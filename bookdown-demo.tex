@@ -1,0 +1,333 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{}
+    \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+    \author{}
+    \preauthor{}\postauthor{}
+    \date{}
+    \predate{}\postdate{}
+  
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{welcome}{%
+\chapter{Welcome!}\label{welcome}}
+
+In this tutorial we will be starting from the beginning, showing you how to set up R, then how to plot and manage your data. Finally, we will introduce modelling in R.
+
+Ideally at the end of this tutorial, you will have learned enough to apply your skills to your own research questions and data.
+
+We don't expect you to retain everything in these tutorials - it's unrealistic and it isn't data analysts work - so our main ambition for the end of the tutorial is you know where to look and to be able to understand what you find. This is important as this means \textbf{you can learn R yourself} and as your needs grow, you can solve the problems yourself.
+
+We have written the tutorial in a \textbf{problem-orientated style}. Each chapter will introduce a problem and then we will use \texttt{R} to solve the problem. We have taken this approach as it should hopefully provide you with a context to approach your own problems with.
+
+This tutorial has data sets which can be found here. There files for this tutorial are available for your personal use too. If you reuse sections of this tutorial, please mention use. Similarly, you can find our biblography at the end.
+
+If you have any comments or corrections, please contact us:
+
+\hypertarget{setting-up}{%
+\chapter{Setting up}\label{setting-up}}
+
+Unfortunately, as with any new skill, the first chapter can be the most text heavy. Apologies. We will do our best to;
+
+\begin{itemize}
+\tightlist
+\item
+  Keep it as brief as possible
+\item
+  clearly structured so you can skip sections as needed
+\item
+  complete so you know that after this chapter you will be focused on coding.
+\end{itemize}
+
+\hypertarget{about-r-and-rstudio}{%
+\section{About R and RStudio}\label{about-r-and-rstudio}}
+
+\texttt{R} is a progamming language that is primarily focused on statistics. This means that it's a way of talking to your computer to get it to solve certain problems and \texttt{R}'s speciality is statistics and data analysis.
+
+It's not all it can do and it can be a great pathway to transition from point-and-click data analysis to more general programming. The skills you will learn along the way are part of most modern languages, so your time will be well spent!
+
+There are many reasons individuals use\texttt{R} but for our needs the main selling points are;
+
+\begin{itemize}
+\tightlist
+\item
+  Integrated platform for all data management, analysis and graphics
+\item
+  Allows for reproducible research
+\item
+  Active community of users providing support
+\item
+  Cost = Free!
+\end{itemize}
+
+\hypertarget{installing-r-and-rstudio}{%
+\subsection{Installing R and RStudio}\label{installing-r-and-rstudio}}
+
+\texttt{R} comes bundled with an interface but not many people use it. The vast majority of \texttt{R} users actually use \textbf{RStudio} on a daily basis to program and so we too.
+
+There are two options at the time of writing; installing \texttt{R} and RStudio on your personal computer (local) or using an online version (cloud). Either is fine. The cloud version is, at the time of writing, free but this is likely to change. Also the cloud version can be slow. Basically, if you are uncomfortable or unable to install programs on your computer, then use the cloud version. Otherwise, the local version is the best choice.
+
+\hypertarget{local}{%
+\subsubsection{Local}\label{local}}
+
+Two main steps - install R and install RStudio.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Install R
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Windows - First follow this tutorial \url{https://youtu.be/G7u7cLiyi8o} then this \url{https://youtu.be/fFjHbWhfn6s}.
+  \item
+    MacOS - Follow this tutorial \url{https://youtu.be/1PsPfMaLWSk} (you can skip the XQuartz part for now).
+  \item
+    Linux - Search online for the appropriate tutorial for your distribution.
+  \end{enumerate}
+\end{enumerate}
+
+\hypertarget{cloud}{%
+\subsubsection{Cloud}\label{cloud}}
+
+As of the time of writing, RStudio is providing a free version of their software that you can run in your web-browser. Go to \url{https://rstudio.cloud} and sign up as you would most online accounts.
+
+One thing to note is getting data onto the cloud requires an extra step. You'll need to press \texttt{Upload} in the bottom right panel and browse your computer for the files. Also, if you want to upload multiple files, you should upload a zip file.
+
+For our tutorial, go to the GitHub Link. Download \texttt{Data} as a zip by pressing the button on the top right and then complete the upload process.
+
+\hypertarget{navigating-rstudio}{%
+\section{Navigating RStudio}\label{navigating-rstudio}}
+
+Open RStudio by either opening the program on your computer as you normally would or by going to \url{https://rstudio.cloud}, logging in and then pressing new project.
+
+You will be faced with something like this;
+
+\[
+![](C:/Users/FaheemAshraf/Dropbox (SSD)/Faheem_workings/2018-11-22 - R Course Editing/Book version files/Bookdown - Working/Images/longandwide.png)<!-- --> 
+\]
+
+Don't panic! We will explain the most important sections.
+
+The first thing to notice is there are three main sections. Each of these sections has ``tabs'' in the same way your web browser does.
+
+\hypertarget{console}{%
+\subsection{Console}\label{console}}
+
+The left most and largest section main tab is called ``Console''. This is where you type you R code. For example, type \texttt{2+2} and then press Enter. You've just run your R command.
+
+\hypertarget{environment}{%
+\subsection{Environment}\label{environment}}
+
+To the top right there is a single important tab; ``Environment'' which tracks all the things you've made during your current working time with R.
+
+\hypertarget{packages-help}{%
+\subsection{Packages, Help}\label{packages-help}}
+
+The bottom right panel has two panels we will use; packages and help. Both will be covered later but briefly packages are where R extensions are listed and Help is where we can access support documents about R in a convenient way.
+
+\hypertarget{source}{%
+\subsection{Source}\label{source}}
+
+We are about to introduce our fourth and final panel. Above the ``Console'' there is a button called \texttt{File}. Do the following; \texttt{File\ -\textgreater{}\ New\ File\ -\textgreater{}\ R\ Markdown}. We will talk abou R Markdown in the next session but a quick note; this new section is generally called ``Source'' because this is the source of the R Code you have written which is then sent to your console.
+
+You can see at the bottom, console has been minimised. As you with any other window, you can use the split and maximise button accordingly.
+
+To recap, the main tabs you need to know are ``Console'', ``Environment'', ``Help'', ``Source'', and ``Packages''
+
+\hypertarget{r-markdown}{%
+\section{R Markdown}\label{r-markdown}}
+
+R Markdown documents allow you to write text around your code and output your work into multipile formats, including a HTML, PDF or Word.
+
+The ``text mode'' is similar to your experience with typing documents in Word or Notepad. Technically it uses ``Markdown'', so you have the option for tables and numbered lists in your final output.
+
+Code in R Markdown is implemented in ``chunks''. There are two types of chunks, in-line and blocks. To insert a chunk, you need to press \texttt{Insert\ -\textgreater{}\ R} located at the top right of the ``Source'' panel.
+
+Once done, enter the code below and press the green play button on the right hand side of the chunk. In this tutorial, code appears in a light grey box and output in a white box.
+
+\textbf{Code}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\OperatorTok{+}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Output}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+Hopefully when you run the code, you see that 2+2 still equals 4!
+
+The code chunks in R Markdown start with \textbf{`````\{r\}''} and ends with \textbf{`````''}.
+
+Do not modify these lines of the chunk otherwise bad things might happen. Modify anything in the middle.
+
+\hypertarget{comments}{%
+\section{Comments}\label{comments}}
+
+Using \texttt{\#} in a code block stops the anything after the symbol being run. \texttt{\#} is referred to as ``commenting'' code because it's usually used to add commentry to long pieces of code. Try running the code below.
+
+\textbf{QUESTION: What do you think the code below will output? Why?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#I am trying to calculate the following;}
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{2} \CommentTok{# + 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# + two}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{getting-the-files}{%
+\section{Getting the files}\label{getting-the-files}}
+
+For this tutorial you will need to download a collection of files. These can be found at {[}Link{]}. One you have downloaded them, you will need to extract them.
+
+\bibliography{book.bib,packages.bib}
+
+
+\end{document}

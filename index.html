@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Online R Course</title>
+  <meta name="description" content="Online R Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Online R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Online R Course" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="setting-up.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i><b>2</b> Setting up</a><ul>
+<li class="chapter" data-level="2.1" data-path="setting-up.html"><a href="setting-up.html#about-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> About R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="setting-up.html"><a href="setting-up.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setting-up.html"><a href="setting-up.html#get-the-data"><i class="fa fa-check"></i><b>2.2</b> Get the data</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up.html"><a href="setting-up.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.3</b> Navigating RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="setting-up.html"><a href="setting-up.html#console"><i class="fa fa-check"></i><b>2.3.1</b> Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setting-up.html"><a href="setting-up.html#environment"><i class="fa fa-check"></i><b>2.3.2</b> Environment</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setting-up.html"><a href="setting-up.html#packages-help"><i class="fa fa-check"></i><b>2.3.3</b> Packages, Help</a></li>
+<li class="chapter" data-level="2.3.4" data-path="setting-up.html"><a href="setting-up.html#source"><i class="fa fa-check"></i><b>2.3.4</b> Source</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="setting-up.html"><a href="setting-up.html#r-markdown"><i class="fa fa-check"></i><b>2.4</b> R Markdown</a></li>
+<li class="chapter" data-level="2.5" data-path="setting-up.html"><a href="setting-up.html#comments"><i class="fa fa-check"></i><b>2.5</b> Comments</a></li>
+<li class="chapter" data-level="2.6" data-path="setting-up.html"><a href="setting-up.html#getting-the-files"><i class="fa fa-check"></i><b>2.6</b> Getting the files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base-R</a><ul>
+<li class="chapter" data-level="3.1" data-path="base-r.html"><a href="base-r.html#objects-and-functions"><i class="fa fa-check"></i><b>3.1</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="base-r.html"><a href="base-r.html#naming-objects"><i class="fa fa-check"></i><b>3.1.1</b> Naming objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="base-r.html"><a href="base-r.html#errors"><i class="fa fa-check"></i><b>3.1.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="base-r.html"><a href="base-r.html#functions"><i class="fa fa-check"></i><b>3.2</b> Functions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="base-r.html"><a href="base-r.html#help"><i class="fa fa-check"></i><b>3.2.1</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="base-r.html"><a href="base-r.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="base-r.html"><a href="base-r.html#quotation-marks"><i class="fa fa-check"></i><b>3.4</b> Quotation Marks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#welcome-to-ggplot"><i class="fa fa-check"></i><b>4.1</b> Welcome to ggplot</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#ggplot2_setting_up"><i class="fa fa-check"></i><b>4.2</b> Setting up</a></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#description-of-the-pulse-of-the-nation-dataset"><i class="fa fa-check"></i><b>4.3</b> Description of the “Pulse of the Nation” Dataset</a></li>
+<li class="chapter" data-level="4.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#main-components-of-ggplot2"><i class="fa fa-check"></i><b>4.4</b> Main components of ggplot2</a></li>
+<li class="chapter" data-level="4.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#first-ggplot2-graph"><i class="fa fa-check"></i><b>4.5</b> First ggplot2 graph</a></li>
+<li class="chapter" data-level="4.6" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#adding-colour"><i class="fa fa-check"></i><b>4.6</b> Adding colour</a></li>
+<li class="chapter" data-level="4.7" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms"><i class="fa fa-check"></i><b>4.7</b> More Geoms</a></li>
+<li class="chapter" data-level="4.8" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>4.8</b> Scales</a></li>
+<li class="chapter" data-level="4.9" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#layering"><i class="fa fa-check"></i><b>4.9</b> Layering</a></li>
+<li class="chapter" data-level="4.10" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms-1"><i class="fa fa-check"></i><b>4.10</b> More geoms</a></li>
+<li class="chapter" data-level="4.11" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#comparing-attractiveness-across-gender"><i class="fa fa-check"></i><b>4.11</b> Comparing attractiveness across gender</a></li>
+<li class="chapter" data-level="4.12" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#splitting-plots-using-facets"><i class="fa fa-check"></i><b>4.12</b> Splitting plots using Facets</a></li>
+<li class="chapter" data-level="4.13" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-and-labels"><i class="fa fa-check"></i><b>4.13</b> Themes and labels</a></li>
+<li class="chapter" data-level="4.14" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#recap-exercises"><i class="fa fa-check"></i><b>4.14</b> Recap Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#set-up-for-session"><i class="fa fa-check"></i><b>5.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#description-of-datasets-being-used"><i class="fa fa-check"></i><b>5.2</b> Description of Datasets Being Used</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slicing-filter-and-select"><i class="fa fa-check"></i><b>5.3</b> Slicing, Filter and Select</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#creating-new-dataframe"><i class="fa fa-check"></i><b>5.4</b> Creating new dataframe</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#column-transformations"><i class="fa fa-check"></i><b>5.5</b> Column Transformations</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#more-ways-to-filter"><i class="fa fa-check"></i><b>5.6</b> More ways to filter</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregationgrouping"><i class="fa fa-check"></i><b>5.7</b> Aggregation/Grouping</a></li>
+<li class="chapter" data-level="5.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.8</b> Pipes</a></li>
+<li class="chapter" data-level="5.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#the-summarise-function"><i class="fa fa-check"></i><b>5.9</b> The summarise() function</a></li>
+<li class="chapter" data-level="5.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging"><i class="fa fa-check"></i><b>5.10</b> Arranging</a></li>
+<li class="chapter" data-level="5.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summary"><i class="fa fa-check"></i><b>5.11</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>6</b> Importing Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="importing-data.html"><a href="importing-data.html#placeholder"><i class="fa fa-check"></i><b>6.1</b> Placeholder</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data.html"><a href="importing-data.html#introduction-to-ukireland-dataset"><i class="fa fa-check"></i><b>6.2</b> Introduction to UKIreland dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="importing-data.html"><a href="importing-data.html#reading-in-data-from-csv"><i class="fa fa-check"></i><b>6.3</b> Reading in data from CSV</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data.html"><a href="importing-data.html#reading-in-from-excel"><i class="fa fa-check"></i><b>6.4</b> Reading in from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>7</b> Merging datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="merging-datasets.html"><a href="merging-datasets.html#set-up-for-session-1"><i class="fa fa-check"></i><b>7.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="7.2" data-path="merging-datasets.html"><a href="merging-datasets.html#binding"><i class="fa fa-check"></i><b>7.2</b> Binding</a></li>
+<li class="chapter" data-level="7.3" data-path="merging-datasets.html"><a href="merging-datasets.html#introducing-merging"><i class="fa fa-check"></i><b>7.3</b> Introducing merging</a></li>
+<li class="chapter" data-level="7.4" data-path="merging-datasets.html"><a href="merging-datasets.html#applying-merging"><i class="fa fa-check"></i><b>7.4</b> Applying merging</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="merging-datasets.html"><a href="merging-datasets.html#piping-into-ggplot-some-new-geoms"><i class="fa fa-check"></i><b>7.4.1</b> Piping into ggplot (+ some new geoms)</a></li>
+<li class="chapter" data-level="7.4.2" data-path="merging-datasets.html"><a href="merging-datasets.html#challenging-merging"><i class="fa fa-check"></i><b>7.4.2</b> Challenging Merging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reshaping-data.html"><a href="reshaping-data.html"><i class="fa fa-check"></i><b>8</b> Reshaping Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="reshaping-data.html"><a href="reshaping-data.html#going-long"><i class="fa fa-check"></i><b>8.1</b> Going Long</a></li>
+<li class="chapter" data-level="8.2" data-path="reshaping-data.html"><a href="reshaping-data.html#going-wide"><i class="fa fa-check"></i><b>8.2</b> Going wide</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="reshaping-data.html"><a href="reshaping-data.html#exercises"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>9</b> Modelling</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelling.html"><a href="modelling.html#set-up-for-session-2"><i class="fa fa-check"></i><b>9.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="9.2" data-path="modelling.html"><a href="modelling.html#exploring-data"><i class="fa fa-check"></i><b>9.2</b> Exploring Data</a></li>
+<li class="chapter" data-level="9.3" data-path="modelling.html"><a href="modelling.html#fitting-model"><i class="fa fa-check"></i><b>9.3</b> Fitting Model</a></li>
+<li class="chapter" data-level="9.4" data-path="modelling.html"><a href="modelling.html#checking-model"><i class="fa fa-check"></i><b>9.4</b> Checking Model</a></li>
+<li class="chapter" data-level="9.5" data-path="modelling.html"><a href="modelling.html#updating-model"><i class="fa fa-check"></i><b>9.5</b> Updating Model</a></li>
+<li class="chapter" data-level="9.6" data-path="modelling.html"><a href="modelling.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>9.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="9.7" data-path="modelling.html"><a href="modelling.html#extending-to-multiple-regression"><i class="fa fa-check"></i><b>9.7</b> Extending to multiple regression:</a></li>
+<li class="chapter" data-level="9.8" data-path="modelling.html"><a href="modelling.html#exercise"><i class="fa fa-check"></i><b>9.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>10</b> Simulation</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulation.html"><a href="simulation.html#description-of-the-session-goal"><i class="fa fa-check"></i><b>10.1</b> Description of the session goal</a></li>
+<li class="chapter" data-level="10.2" data-path="simulation.html"><a href="simulation.html#find-and-install-r-packages"><i class="fa fa-check"></i><b>10.2</b> Find and install R packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simulation.html"><a href="simulation.html#sampling-from-data-or-known-distributions"><i class="fa fa-check"></i><b>10.3</b> Sampling from data or known distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="simulation.html"><a href="simulation.html#sampling-from-data"><i class="fa fa-check"></i><b>10.4</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.5" data-path="simulation.html"><a href="simulation.html#generating-random-numbers-from-distributions"><i class="fa fa-check"></i><b>10.5</b> Generating random numbers from distributions</a></li>
+<li class="chapter" data-level="10.6" data-path="simulation.html"><a href="simulation.html#reproducing-samples"><i class="fa fa-check"></i><b>10.6</b> Reproducing samples</a></li>
+<li class="chapter" data-level="10.7" data-path="simulation.html"><a href="simulation.html#sampling-from-data-1"><i class="fa fa-check"></i><b>10.7</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.8" data-path="simulation.html"><a href="simulation.html#making-functions"><i class="fa fa-check"></i><b>10.8</b> Making functions</a></li>
+<li class="chapter" data-level="10.9" data-path="simulation.html"><a href="simulation.html#when-to-write-your-own-functions"><i class="fa fa-check"></i><b>10.9</b> When to write your own functions</a></li>
+<li class="chapter" data-level="10.10" data-path="simulation.html"><a href="simulation.html#iterations-loops"><i class="fa fa-check"></i><b>10.10</b> Iterations (loops)</a></li>
+<li class="chapter" data-level="10.11" data-path="simulation.html"><a href="simulation.html#puttng-it-all-together"><i class="fa fa-check"></i><b>10.11</b> Puttng it all together</a></li>
+<li class="chapter" data-level="10.12" data-path="simulation.html"><a href="simulation.html#simulation-of-the-best-strategy"><i class="fa fa-check"></i><b>10.12</b> Simulation of the best strategy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://stats4sd.org/" target="blank">By Statistics for Sustianable Development</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Online R Course</h1>
+</div>
+<div id="welcome" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Welcome!</h1>
+<p>In this tutorial we will be teaching R from the beginning - showing you how to set up R, building foundational R skills then moving onto how to plot and manage your data. Finally, we will introduce modelling in R.</p>
+<p>We have written the tutorial in a <strong>problem-orientated style</strong>. Each chapter will introduce a problem and then we will use <code>R</code> to solve the problem. We have taken this approach as it should hopefully provide you with a context to approach your own problems with and, ideally, by the end of this tutorial, you will have learned enough to apply your skills to your own research questions and data.</p>
+<p>We don’t expect you to have memorised everything in these tutorials - it’s unrealistic and it’s not how data analysts work. Our main goal for the end of the tutorial is to teach you where to look and to be able to understand what you find so <strong>you can learn R yourself</strong> and when your your needs grow, you can solve the problems yourself.</p>
+<p>The files for this tutorial are available for your personal use. If you reuse sections of this tutorial, please mention us and the appropriate citations found in the biblography.</p>
+<p>If you have any comments or corrections, please contact us through <a href="https://stats4sd.org/contact" class="uri">https://stats4sd.org/contact</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="setting-up.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Online_R_Course.pdf", "Online_R_Course.epub"],
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Simulation | Online R Course</title>
+  <meta name="description" content="Chapter 10 Simulation | Online R Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Simulation | Online R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Simulation | Online R Course" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelling.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i><b>2</b> Setting up</a><ul>
+<li class="chapter" data-level="2.1" data-path="setting-up.html"><a href="setting-up.html#about-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> About R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="setting-up.html"><a href="setting-up.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setting-up.html"><a href="setting-up.html#get-the-data"><i class="fa fa-check"></i><b>2.2</b> Get the data</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up.html"><a href="setting-up.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.3</b> Navigating RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="setting-up.html"><a href="setting-up.html#console"><i class="fa fa-check"></i><b>2.3.1</b> Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setting-up.html"><a href="setting-up.html#environment"><i class="fa fa-check"></i><b>2.3.2</b> Environment</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setting-up.html"><a href="setting-up.html#packages-help"><i class="fa fa-check"></i><b>2.3.3</b> Packages, Help</a></li>
+<li class="chapter" data-level="2.3.4" data-path="setting-up.html"><a href="setting-up.html#source"><i class="fa fa-check"></i><b>2.3.4</b> Source</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="setting-up.html"><a href="setting-up.html#r-markdown"><i class="fa fa-check"></i><b>2.4</b> R Markdown</a></li>
+<li class="chapter" data-level="2.5" data-path="setting-up.html"><a href="setting-up.html#comments"><i class="fa fa-check"></i><b>2.5</b> Comments</a></li>
+<li class="chapter" data-level="2.6" data-path="setting-up.html"><a href="setting-up.html#getting-the-files"><i class="fa fa-check"></i><b>2.6</b> Getting the files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base-R</a><ul>
+<li class="chapter" data-level="3.1" data-path="base-r.html"><a href="base-r.html#objects-and-functions"><i class="fa fa-check"></i><b>3.1</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="base-r.html"><a href="base-r.html#naming-objects"><i class="fa fa-check"></i><b>3.1.1</b> Naming objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="base-r.html"><a href="base-r.html#errors"><i class="fa fa-check"></i><b>3.1.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="base-r.html"><a href="base-r.html#functions"><i class="fa fa-check"></i><b>3.2</b> Functions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="base-r.html"><a href="base-r.html#help"><i class="fa fa-check"></i><b>3.2.1</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="base-r.html"><a href="base-r.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="base-r.html"><a href="base-r.html#quotation-marks"><i class="fa fa-check"></i><b>3.4</b> Quotation Marks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#welcome-to-ggplot"><i class="fa fa-check"></i><b>4.1</b> Welcome to ggplot</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#ggplot2_setting_up"><i class="fa fa-check"></i><b>4.2</b> Setting up</a></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#description-of-the-pulse-of-the-nation-dataset"><i class="fa fa-check"></i><b>4.3</b> Description of the “Pulse of the Nation” Dataset</a></li>
+<li class="chapter" data-level="4.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#main-components-of-ggplot2"><i class="fa fa-check"></i><b>4.4</b> Main components of ggplot2</a></li>
+<li class="chapter" data-level="4.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#first-ggplot2-graph"><i class="fa fa-check"></i><b>4.5</b> First ggplot2 graph</a></li>
+<li class="chapter" data-level="4.6" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#adding-colour"><i class="fa fa-check"></i><b>4.6</b> Adding colour</a></li>
+<li class="chapter" data-level="4.7" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms"><i class="fa fa-check"></i><b>4.7</b> More Geoms</a></li>
+<li class="chapter" data-level="4.8" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>4.8</b> Scales</a></li>
+<li class="chapter" data-level="4.9" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#layering"><i class="fa fa-check"></i><b>4.9</b> Layering</a></li>
+<li class="chapter" data-level="4.10" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms-1"><i class="fa fa-check"></i><b>4.10</b> More geoms</a></li>
+<li class="chapter" data-level="4.11" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#comparing-attractiveness-across-gender"><i class="fa fa-check"></i><b>4.11</b> Comparing attractiveness across gender</a></li>
+<li class="chapter" data-level="4.12" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#splitting-plots-using-facets"><i class="fa fa-check"></i><b>4.12</b> Splitting plots using Facets</a></li>
+<li class="chapter" data-level="4.13" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-and-labels"><i class="fa fa-check"></i><b>4.13</b> Themes and labels</a></li>
+<li class="chapter" data-level="4.14" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#recap-exercises"><i class="fa fa-check"></i><b>4.14</b> Recap Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#set-up-for-session"><i class="fa fa-check"></i><b>5.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#description-of-datasets-being-used"><i class="fa fa-check"></i><b>5.2</b> Description of Datasets Being Used</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slicing-filter-and-select"><i class="fa fa-check"></i><b>5.3</b> Slicing, Filter and Select</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#creating-new-dataframe"><i class="fa fa-check"></i><b>5.4</b> Creating new dataframe</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#column-transformations"><i class="fa fa-check"></i><b>5.5</b> Column Transformations</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#more-ways-to-filter"><i class="fa fa-check"></i><b>5.6</b> More ways to filter</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregationgrouping"><i class="fa fa-check"></i><b>5.7</b> Aggregation/Grouping</a></li>
+<li class="chapter" data-level="5.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.8</b> Pipes</a></li>
+<li class="chapter" data-level="5.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#the-summarise-function"><i class="fa fa-check"></i><b>5.9</b> The summarise() function</a></li>
+<li class="chapter" data-level="5.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging"><i class="fa fa-check"></i><b>5.10</b> Arranging</a></li>
+<li class="chapter" data-level="5.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summary"><i class="fa fa-check"></i><b>5.11</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>6</b> Importing Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="importing-data.html"><a href="importing-data.html#placeholder"><i class="fa fa-check"></i><b>6.1</b> Placeholder</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data.html"><a href="importing-data.html#introduction-to-ukireland-dataset"><i class="fa fa-check"></i><b>6.2</b> Introduction to UKIreland dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="importing-data.html"><a href="importing-data.html#reading-in-data-from-csv"><i class="fa fa-check"></i><b>6.3</b> Reading in data from CSV</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data.html"><a href="importing-data.html#reading-in-from-excel"><i class="fa fa-check"></i><b>6.4</b> Reading in from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>7</b> Merging datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="merging-datasets.html"><a href="merging-datasets.html#set-up-for-session-1"><i class="fa fa-check"></i><b>7.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="7.2" data-path="merging-datasets.html"><a href="merging-datasets.html#binding"><i class="fa fa-check"></i><b>7.2</b> Binding</a></li>
+<li class="chapter" data-level="7.3" data-path="merging-datasets.html"><a href="merging-datasets.html#introducing-merging"><i class="fa fa-check"></i><b>7.3</b> Introducing merging</a></li>
+<li class="chapter" data-level="7.4" data-path="merging-datasets.html"><a href="merging-datasets.html#applying-merging"><i class="fa fa-check"></i><b>7.4</b> Applying merging</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="merging-datasets.html"><a href="merging-datasets.html#piping-into-ggplot-some-new-geoms"><i class="fa fa-check"></i><b>7.4.1</b> Piping into ggplot (+ some new geoms)</a></li>
+<li class="chapter" data-level="7.4.2" data-path="merging-datasets.html"><a href="merging-datasets.html#challenging-merging"><i class="fa fa-check"></i><b>7.4.2</b> Challenging Merging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reshaping-data.html"><a href="reshaping-data.html"><i class="fa fa-check"></i><b>8</b> Reshaping Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="reshaping-data.html"><a href="reshaping-data.html#going-long"><i class="fa fa-check"></i><b>8.1</b> Going Long</a></li>
+<li class="chapter" data-level="8.2" data-path="reshaping-data.html"><a href="reshaping-data.html#going-wide"><i class="fa fa-check"></i><b>8.2</b> Going wide</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="reshaping-data.html"><a href="reshaping-data.html#exercises"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>9</b> Modelling</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelling.html"><a href="modelling.html#set-up-for-session-2"><i class="fa fa-check"></i><b>9.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="9.2" data-path="modelling.html"><a href="modelling.html#exploring-data"><i class="fa fa-check"></i><b>9.2</b> Exploring Data</a></li>
+<li class="chapter" data-level="9.3" data-path="modelling.html"><a href="modelling.html#fitting-model"><i class="fa fa-check"></i><b>9.3</b> Fitting Model</a></li>
+<li class="chapter" data-level="9.4" data-path="modelling.html"><a href="modelling.html#checking-model"><i class="fa fa-check"></i><b>9.4</b> Checking Model</a></li>
+<li class="chapter" data-level="9.5" data-path="modelling.html"><a href="modelling.html#updating-model"><i class="fa fa-check"></i><b>9.5</b> Updating Model</a></li>
+<li class="chapter" data-level="9.6" data-path="modelling.html"><a href="modelling.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>9.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="9.7" data-path="modelling.html"><a href="modelling.html#extending-to-multiple-regression"><i class="fa fa-check"></i><b>9.7</b> Extending to multiple regression:</a></li>
+<li class="chapter" data-level="9.8" data-path="modelling.html"><a href="modelling.html#exercise"><i class="fa fa-check"></i><b>9.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>10</b> Simulation</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulation.html"><a href="simulation.html#description-of-the-session-goal"><i class="fa fa-check"></i><b>10.1</b> Description of the session goal</a></li>
+<li class="chapter" data-level="10.2" data-path="simulation.html"><a href="simulation.html#find-and-install-r-packages"><i class="fa fa-check"></i><b>10.2</b> Find and install R packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simulation.html"><a href="simulation.html#sampling-from-data-or-known-distributions"><i class="fa fa-check"></i><b>10.3</b> Sampling from data or known distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="simulation.html"><a href="simulation.html#sampling-from-data"><i class="fa fa-check"></i><b>10.4</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.5" data-path="simulation.html"><a href="simulation.html#generating-random-numbers-from-distributions"><i class="fa fa-check"></i><b>10.5</b> Generating random numbers from distributions</a></li>
+<li class="chapter" data-level="10.6" data-path="simulation.html"><a href="simulation.html#reproducing-samples"><i class="fa fa-check"></i><b>10.6</b> Reproducing samples</a></li>
+<li class="chapter" data-level="10.7" data-path="simulation.html"><a href="simulation.html#sampling-from-data-1"><i class="fa fa-check"></i><b>10.7</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.8" data-path="simulation.html"><a href="simulation.html#making-functions"><i class="fa fa-check"></i><b>10.8</b> Making functions</a></li>
+<li class="chapter" data-level="10.9" data-path="simulation.html"><a href="simulation.html#when-to-write-your-own-functions"><i class="fa fa-check"></i><b>10.9</b> When to write your own functions</a></li>
+<li class="chapter" data-level="10.10" data-path="simulation.html"><a href="simulation.html#iterations-loops"><i class="fa fa-check"></i><b>10.10</b> Iterations (loops)</a></li>
+<li class="chapter" data-level="10.11" data-path="simulation.html"><a href="simulation.html#puttng-it-all-together"><i class="fa fa-check"></i><b>10.11</b> Puttng it all together</a></li>
+<li class="chapter" data-level="10.12" data-path="simulation.html"><a href="simulation.html#simulation-of-the-best-strategy"><i class="fa fa-check"></i><b>10.12</b> Simulation of the best strategy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://stats4sd.org/" target="blank">By Statistics for Sustianable Development</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simulation" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Simulation</h1>
+<div id="description-of-the-session-goal" class="section level2">
+<h2><span class="header-section-number">10.1</span> Description of the session goal</h2>
+<p>In this session we will learn about:
+<em>Packages</em><br />
+<em>Sampling</em><br />
+<em>Functions</em><br />
+<em>Loops</em><br />
+At the end we’ll try to make a concrete use of all of it and answer an interesting question in probability.</p>
+<p>Ready?</p>
+</div>
+<div id="find-and-install-r-packages" class="section level2">
+<h2><span class="header-section-number">10.2</span> Find and install R packages</h2>
+<p>A nice website to find packages is <a href="https://www.rdocumentation.org" class="uri">https://www.rdocumentation.org</a><br />
+That’s how I found about the package “ukbabynames” that contains data for all baby names given at least three times between 1996 and 2015.</p>
+<p>To install a package called “ukbabynames”, we do</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ukbabynames&quot;</span>)</code></pre>
+<p>Once a package is installed in your computer, it will remain installed and so you only need to install the package again if you’re updating your version of R.</p>
+<p>However, each time you open a new session of R or Rstudio, you need to load the package if you want to use it:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ukbabynames)</code></pre>
+<p>I’m sure you noticed that we’ve done it several times already with packages like <code>ggplot2</code> or <code>dplyr()</code>.</p>
+<p>Most often we are interested in the functions of the packages we install, but a package can also contain datasets and in this case, the package “ukbabynames” contains a dataframe of the same name and this is what we will use from it:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(ukbabynames)</code></pre>
+<p><strong>QUESTION 2.1: The function <code>say()</code> from the package “cowsay” is useless, but funny. Install the package “cowsay”. Then, when the installation is finished (you have a to wait a bit, like for any package you would install), load the package and try to run the command <code>say(Hello R!)</code>. What happens?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">???.???(<span class="st">&quot;cowsay&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">???(cowsay)
+<span class="kw">say</span>(<span class="st">&quot;Hello R!&quot;</span>)</code></pre>
+</div>
+<div id="sampling-from-data-or-known-distributions" class="section level2">
+<h2><span class="header-section-number">10.3</span> Sampling from data or known distributions</h2>
+</div>
+<div id="sampling-from-data" class="section level2">
+<h2><span class="header-section-number">10.4</span> Sampling from data</h2>
+<p>The <code>sample()</code> function allows you to choose a random sample from a list of values.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span>)</code></pre>
+<pre><code>## [1]  4 19  5 20 11</code></pre>
+<p>The first argument is the values to sample from and the second is the number of values to sample. If we omit the second argument, we get all the values, but in a random order:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>)</code></pre>
+<pre><code>##  [1]  2  9  8 11  3  5  4 10  1  7  6 12</code></pre>
+<p>By default <code>sample()</code> samples without replacement, so when you do</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span>)</code></pre>
+<p>You get an error. To sample with replacement you need to add the argument replace=TRUE:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">10</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>)</code></pre>
+<pre><code>##  [1] 5 2 2 3 3 4 2 2 4 5</code></pre>
+</div>
+<div id="generating-random-numbers-from-distributions" class="section level2">
+<h2><span class="header-section-number">10.5</span> Generating random numbers from distributions</h2>
+<p>We can also generate random numbers from known distribution.</p>
+<p>runif (uniform)<br />
+rpois (poisson)<br />
+rnorm (normal)<br />
+rbinom (binomial)<br />
+rgamma (gamma)<br />
+rbeta (beta)</p>
+<p>The first argument for all of these is n, the number of samples to generate. Following arguments can specify parameters for the distribution.</p>
+<p>Here are three random numbers coming from a standard normal distribution:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">3</span>)</code></pre>
+<pre><code>## [1] -0.5218292  0.1383097 -1.1344200</code></pre>
+<p>here, six random numbers coming from a normal distribution with mean 5 and standard deviation 2:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">2</span>)</code></pre>
+<pre><code>## [1] 5.649870 6.513839 3.417192 7.307390 4.027937 4.192629</code></pre>
+<p>And here is 5 random numbers coming from a uniform distribution between 0 and 1:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">runif</span>(<span class="dv">5</span>)</code></pre>
+<pre><code>## [1] 0.1959726 0.4794798 0.2787031 0.9619588 0.6556468</code></pre>
+</div>
+<div id="reproducing-samples" class="section level2">
+<h2><span class="header-section-number">10.6</span> Reproducing samples</h2>
+<p>Note that if you run any of these commands again you’ll get a different sample. Sometimes you want your random sample to be reproducible i.e. you want to get the same random sample each time you run the script.<br />
+This is possible because the generation of randomness of any programming language is based on some algorithm that takes some “seed” number as input. It is usually based on the internal clock of your computer and so it changes all the time. But we can fix the seed manually by running the function <code>set.seed()</code> with an integer inside the parenthesis</p>
+<p><strong>QUESTION 3.1: Produce 5 random integers between 1 and 20, without replacement. Set a seed before sampling and confirm that you get the same sample each time you run it.</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">???
+<span class="kw">sample</span>(???, ???)</code></pre>
+</div>
+<div id="sampling-from-data-1" class="section level2">
+<h2><span class="header-section-number">10.7</span> Sampling from data</h2>
+<p>We can sample from data in the same way as above. Here I am sampling 10 random names from the ukbabynames dataframe:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(ukbabynames<span class="op">$</span>name, <span class="dv">10</span>)</code></pre>
+<pre><code>##  [1] &quot;Avery&quot;      &quot;Esmie&quot;      &quot;Preeti&quot;     &quot;Luan&quot;       &quot;Lyam&quot;      
+##  [6] &quot;Faraaz&quot;     &quot;Jett&quot;       &quot;Kydan&quot;      &quot;Konstantin&quot; &quot;Ramona&quot;</code></pre>
+<p>Note also that the package dplyr contains its own functon sample_n() that allow you to sample the number of rows that you indicate as its second argument (which is the first argument if you use “%&gt;%”):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+ukbabynames <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">8</span>)</code></pre>
+<pre><code>##   year sex      name   n rank
+## 1 2015   F  Sabriyah   3 5730
+## 2 2012   M     Yanky   3 4805
+## 3 2007   F    Yasmin 385  141
+## 4 2000   F   Lucinda  78  405
+## 5 2002   M    Henrik   4 2636
+## 6 2007   F   Bryanna  10 2233
+## 7 2005   M Shahriyar   3 3849
+## 8 1999   F   Shahnaz   6 2444</code></pre>
+</div>
+<div id="making-functions" class="section level2">
+<h2><span class="header-section-number">10.8</span> Making functions</h2>
+</div>
+<div id="when-to-write-your-own-functions" class="section level2">
+<h2><span class="header-section-number">10.9</span> When to write your own functions</h2>
+<p>If there’s already a function in R that does what you want then writing it yourself will almost definitely be less efficient as well as wasting your time. For example, writing a function to calculate the standard deviation of a column is not needed since there is already the <code>sd()</code> function.</p>
+<p>Many common things will already have function either in base R or a package, however if you find yourself doing the same specific task multiple times, writing your own function can save you copying and pasting code and this is always desirable.</p>
+<p>We define a function that way:</p>
+<pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  
+}</code></pre>
+<p>and use it like any other function</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myFunction</span>()</code></pre>
+<pre><code>## NULL</code></pre>
+<p>Yes for now our function doesn’t do anything, because there is nothing inside the brakets (note tha they are curly brackets by the way, not normal or square brackets!).</p>
+<p>We can make the function return something, with the function return()</p>
+<pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  <span class="kw">return</span>(<span class="dv">2</span>)
+}
+<span class="kw">myFunction</span>()</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Our function just returns two each time we call it. What an awesome function!!!</p>
+<p>Let’s put inside some code that generates the sum of 3 uniformely distributed random numbers and let’s return that sum</p>
+<pre class="sourceCode r"><code class="sourceCode r">myFunction &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  few_runif &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">3</span>)
+  sum_few_runif &lt;-<span class="st"> </span><span class="kw">sum</span>(few_runif)
+  <span class="kw">return</span>(sum_few_runif)
+}
+<span class="kw">myFunction</span>()</code></pre>
+<pre><code>## [1] 1.418794</code></pre>
+<p>Yayy! Did you see that each time you run it you get a different number?</p>
+<p><strong>QUESTION 4.1: Create a function called myFunctionNorm that would return the sum of 5 normally distributed random numbers. Run it to see if it works</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">??? &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  few_rnorm &lt;-<span class="st"> </span>???(???)
+  sum_few_rnorm &lt;-<span class="st"> </span>???(???)
+  <span class="kw">return</span>(???)
+}
+
+???()</code></pre>
+<p>You may be tempted to put a number inside the parenthesis. Would myFunction(5) generate 5 random numbers?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myFunction</span>(<span class="dv">5</span>)</code></pre>
+<p>Argh, no, because we didn’t define what the function should do with what is inside the parenthesis.</p>
+<p>We can generate more than one number with the function replicate() though, which simply runs what we put as its second argument (second thing inside the parentheses), the number of times we indicate as its first argument:</p>
+<pre class="sourceCode r"><code class="sourceCode r">randomNumbers &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">5</span>, <span class="kw">myFunction</span>())
+randomNumbers</code></pre>
+<pre><code>## [1] 1.2500121 0.4373939 1.9210987 2.2747847 2.3319412</code></pre>
+<p>If we felt that the command replicate(number, myFunction()) was a bit too long to write, we could make a function similar to rnorm(), runif() etc. that gives the size of the sample as the first argument:</p>
+<pre class="sourceCode r"><code class="sourceCode r">rsum3unif &lt;-<span class="st"> </span><span class="cf">function</span>(n){
+  some_sum3unif &lt;-<span class="st"> </span><span class="kw">replicate</span>(n,<span class="kw">myFunction</span>())
+  <span class="kw">return</span>(some_sum3unif)
+}
+
+<span class="kw">rsum3unif</span>(<span class="dv">8</span>)</code></pre>
+<pre><code>## [1] 2.247655 1.021067 1.093353 1.157237 1.313873 1.372789 1.183770 1.415288</code></pre>
+<p>And here it is, we made a function that takes a number as its first (and only) argument, which it then used as the first argument of the function replicate, to generate the required number of random numbers (made from the sum of 3 uniformely distributed reandom numbers).</p>
+<p><strong>QUESTION 4.2: the function below is supposed to print in the console a smiley that says the words given as its argument. What would you need to write in place of ??? for it to work? (note: the function cat() prints what’s inside its parenthesis on the screen. “\\n” tells R to go to the next line). Try it</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">smileysay &lt;-<span class="st"> </span><span class="cf">function</span>(???){
+  <span class="kw">cat</span>(<span class="st">&quot;----------</span><span class="ch">\n</span><span class="st">&quot;</span>)
+  <span class="kw">cat</span>(words)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">----------&quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">       &quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st"> ^   ^ &quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">   |   &quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">  ___  &quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st"> |   | &quot;</span>)
+  <span class="kw">cat</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">  ---  &quot;</span>)
+}
+
+<span class="kw">smileysay</span>(<span class="st">&quot;Hello R!&quot;</span>)</code></pre>
+</div>
+<div id="iterations-loops" class="section level2">
+<h2><span class="header-section-number">10.10</span> Iterations (loops)</h2>
+<p>Here is a simple loop for:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="op">:</span><span class="dv">9</span>) {
+  <span class="kw">print</span>(i)
+}</code></pre>
+<pre><code>## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9</code></pre>
+<p>The first part: (i in 3:9) provides the set of values to loop over. What is inside the curly brackets are the things that we are asking R to do at each iteration of the loop. Here we are asking to print i.</p>
+<p>So we can read the above code as “i will iteratively take all the values from 3 to 9 and for each iteration i should be printed on the screen”.</p>
+<p>Instead of 3:9 we could put any kind of list of elements, and we don’t need i to be called i. For example let’s loop over a list of 10 random numbers, with the iteration variable called rnumber instead of i:</p>
+<pre class="sourceCode r"><code class="sourceCode r">randomNumbers&lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">10</span>)
+<span class="cf">for</span>(rnumber <span class="cf">in</span> randomNumbers) {
+  <span class="kw">print</span>(rnumber)
+}</code></pre>
+<pre><code>## [1] 0.7378243
+## [1] 0.5278535
+## [1] 0.9049213
+## [1] 0.2462606
+## [1] 0.9035252
+## [1] 0.872111
+## [1] 0.6422247
+## [1] 0.5169815
+## [1] 0.9433067
+## [1] 0.5461632</code></pre>
+<p><strong>QUESTION 5.1: Make a loop with 12 iterations that generates and print at each iteration a random number coming from a standard normal distribution . Call the iteration variable “iter”.</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(??? <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>???) {
+  random_number &lt;-<span class="st"> </span>???(<span class="dv">1</span>)
+  <span class="kw">print</span>(???)
+}</code></pre>
+<p>In addition to being able to make loops, we will need to know how to check whether the name found in a box is or not the the name of the prisoner. We will do that with the function if()</p>
+<p>If() works like the function for(), but is a bit simpler: if what is inside the parenthesis is true, then what is inside the curly brackets is performed. Let’s generate a random number and check if it is larger than 0:</p>
+<pre class="sourceCode r"><code class="sourceCode r">aNummber &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)
+aNummber</code></pre>
+<pre><code>## [1] 0.8235913</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(aNummber<span class="op">&gt;</span><span class="dv">0</span>) {
+  <span class="kw">print</span>(<span class="st">&quot;it is larger than 0&quot;</span>)
+}</code></pre>
+<pre><code>## [1] &quot;it is larger than 0&quot;</code></pre>
+<p>If you run the above code multiple times, you will see that sometimes something will be printed and sometimes not.</p>
+<p>We can also ask R to perform an action when the condition inside the parenthesis is false, using the else command:</p>
+<pre class="sourceCode r"><code class="sourceCode r">aNummber &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)
+aNummber</code></pre>
+<pre><code>## [1] 1.219121</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(aNummber<span class="op">&gt;</span><span class="dv">0</span>) {
+  <span class="kw">print</span>(<span class="st">&quot;it is larger than 0&quot;</span>)
+} <span class="cf">else</span>{
+  <span class="kw">print</span>(<span class="st">&quot;it is negative!&quot;</span>)
+}</code></pre>
+<pre><code>## [1] &quot;it is larger than 0&quot;</code></pre>
+<p>Also note that there exists another function called “ifelse()” that allows us to check a same condition on multiple elements at the same time. It works more like a normal function, the first argument being the condition to check, the second is what the function must return if the condition is checked and the third, what it must return if it is not. Let’s generate 10 random numbers, check whether they are greater than 0, and for each of them, return 1 if this condtion is true and 0 if it is not:</p>
+<pre class="sourceCode r"><code class="sourceCode r">fewNummbers &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10</span>)
+fewNummbers</code></pre>
+<pre><code>##  [1]  0.48957909 -1.22477895 -0.86590124 -0.03382881  1.81311364
+##  [6] -1.00501278  1.27771063  1.06059840  0.04733959 -0.04984811</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(fewNummbers<span class="op">&gt;</span><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</code></pre>
+<pre><code>##  [1] 1 0 0 0 1 0 1 1 1 0</code></pre>
+<p>Do you see that you could achieve the same thing by looping over the 10 random number? Actually, R contains lots of functions like ifelse() that we could replace with loops but these functions are optimize and therefore much faster than using loops. Very often you’ll be able to avoid using loops, and you should try so. They will only be unavoidable in some very specific situations.</p>
+<p><strong>QUESTION 5.2: can you produce the same sequence of 0 and 1 as above, but using a loop for() and the if() function?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> ???){
+  <span class="cf">if</span>(???){
+    <span class="kw">print</span>(???)
+  }
+  <span class="cf">else</span>{
+    <span class="kw">print</span>(???)
+  }
+}</code></pre>
+</div>
+<div id="puttng-it-all-together" class="section level2">
+<h2><span class="header-section-number">10.11</span> Puttng it all together</h2>
+<p>Here is a version of a very hard probability problem, with a very unintuitive result, that was first published by Peter Bro Miltersen and Anna Gal in the Proceedings of the 30th International Colloquium on Automata, Languages and Programming (ICALP):</p>
+<p>The names of 100 prisoners are placed in 100 wooden boxes, one name to a box, and the boxes are lined up and numbered on a table in a room.
+One by one, the prisoners are led into the room; each may look in at most 50 boxes, but must leave the room exactly as he found it and is permitted no further communication with the others.
+The prisoners have a chance to plot their strategy in advance, and they are going to need it, because unless every single prisoner finds his own name all will subsequently be executed.</p>
+<p><strong>QUESTION Can you guess what is the probability of success of the best strategy?</strong></p>
+<p>One simple strategy would be for each prisoner to open 50 boxes at random. Since there are 100 boxes in total, each prisoner will have a probability of 1/2 to open the box that contains his name. Since each prisoner chooses randomly, the probability of success of the prisoners are independant and so the probability that all the prisoners will manage to open the box that contains their name is:</p>
+<pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">^</span><span class="dv">100</span></code></pre>
+<pre><code>## [1] 7.888609e-31</code></pre>
+<p>… quite low!</p>
+<p>Now the best strategy is quite simple, but understanding why it is the best is not at all obvious. It requires quite heavy math thinking about permutations and cycles. The same goes for calculating the associated probability of success. What we can do though is make some simulations to get an approximation of it.</p>
+<p>The best strategy is the following:
+First, the prisoners should agree on a random assignment of each box to a prisoner’s name. We can imagine they all have in mind an imaginary common labelling of the 100 boxes.</p>
+<p>Then each prisoner opens the box assigned to him. If the box contains his name, great. Otherwise, he opens the box labelled with the name found in this first box, and then he opens the box labelled with the name found in the second box etc. until he has either found his name, or opened 50 boxes.</p>
+</div>
+<div id="simulation-of-the-best-strategy" class="section level2">
+<h2><span class="header-section-number">10.12</span> Simulation of the best strategy</h2>
+<p>First, we need 100 names for our prisoners though. Here they are:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">79</span>)
+list_prisoners &lt;-<span class="st"> </span><span class="kw">sample</span>(ukbabynames<span class="op">$</span>name, <span class="dv">100</span>)
+list_prisoners</code></pre>
+<pre><code>##   [1] &quot;Abela&quot;       &quot;Taher&quot;       &quot;Fynlay&quot;      &quot;Gisele&quot;      &quot;Wania&quot;      
+##   [6] &quot;Adelaide&quot;    &quot;Mansoor&quot;     &quot;Larissa&quot;     &quot;Hayley&quot;      &quot;Iona&quot;       
+##  [11] &quot;Anesh&quot;       &quot;Ashir&quot;       &quot;Luisa&quot;       &quot;Shakti&quot;      &quot;Scarlett&quot;   
+##  [16] &quot;Evie&quot;        &quot;Tiger&quot;       &quot;Geoffrey&quot;    &quot;Cassie&quot;      &quot;Shariq&quot;     
+##  [21] &quot;Alarna&quot;      &quot;Rawdah&quot;      &quot;Hadassah&quot;    &quot;Ikram&quot;       &quot;Amia&quot;       
+##  [26] &quot;Jamieleigh&quot;  &quot;Demilade&quot;    &quot;Kovan&quot;       &quot;Demi-Rae&quot;    &quot;Azim&quot;       
+##  [31] &quot;Gaurav&quot;      &quot;Christos&quot;    &quot;Jarin&quot;       &quot;Domenico&quot;    &quot;Manaal&quot;     
+##  [36] &quot;Elijah&quot;      &quot;Katie-Mae&quot;   &quot;Abdulhakeem&quot; &quot;Krystal&quot;     &quot;Nana&quot;       
+##  [41] &quot;Stacie&quot;      &quot;Yaw&quot;         &quot;Kay&quot;         &quot;Lily-Ann&quot;    &quot;Sola&quot;       
+##  [46] &quot;Iara&quot;        &quot;Honie&quot;       &quot;Liana&quot;       &quot;George&quot;      &quot;Kaylem&quot;     
+##  [51] &quot;Khushal&quot;     &quot;Bushra&quot;      &quot;Yasa&quot;        &quot;Filipa&quot;      &quot;Braidon&quot;    
+##  [56] &quot;Lois&quot;        &quot;Daisy-may&quot;   &quot;Esmay&quot;       &quot;Alisdair&quot;    &quot;Sunaina&quot;    
+##  [61] &quot;Muhanad&quot;     &quot;Huw&quot;         &quot;Taegan&quot;      &quot;Catelynn&quot;    &quot;Byron&quot;      
+##  [66] &quot;Gage&quot;        &quot;Delphi&quot;      &quot;Faiz&quot;        &quot;Shaam&quot;       &quot;Zafir&quot;      
+##  [71] &quot;Rivaan&quot;      &quot;Haajira&quot;     &quot;Amye&quot;        &quot;Warrick&quot;     &quot;Sajan&quot;      
+##  [76] &quot;Ephraim&quot;     &quot;Evie-Lea&quot;    &quot;Ayush&quot;       &quot;Maisie&quot;      &quot;Ugochi&quot;     
+##  [81] &quot;Samad&quot;       &quot;Bhavika&quot;     &quot;Delara&quot;      &quot;Monet&quot;       &quot;Kalani&quot;     
+##  [86] &quot;Aashi&quot;       &quot;Hajira&quot;      &quot;Ishika&quot;      &quot;Isra&quot;        &quot;Kerensa&quot;    
+##  [91] &quot;Samy&quot;        &quot;Mariam&quot;      &quot;Tinotenda&quot;   &quot;Shiloh&quot;      &quot;Glory&quot;      
+##  [96] &quot;Diego&quot;       &quot;Dayton&quot;      &quot;Jeorgie&quot;     &quot;Promise&quot;     &quot;Payal&quot;</code></pre>
+<p>What we will need to do then is sample from this list to randomly place the names of the prisoners in the boxes:</p>
+<pre class="sourceCode r"><code class="sourceCode r">name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+name_inside_box[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre>
+<pre><code>##  [1] &quot;Gaurav&quot;   &quot;Jeorgie&quot;  &quot;Ashir&quot;    &quot;Bhavika&quot;  &quot;Dayton&quot;   &quot;Azim&quot;    
+##  [7] &quot;Jarin&quot;    &quot;Amia&quot;     &quot;Hadassah&quot; &quot;Stacie&quot;</code></pre>
+<p>So for this simulation, in the first box there is the name <code>name_inside_box[1]</code>, in the second one, <code>name_inside_box[2]</code> etc.</p>
+<p>And we can do the same to simulate the imaginary random labelling of the boxes by the prisoners when they develop their strategy:</p>
+<pre class="sourceCode r"><code class="sourceCode r">label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+label_on_box[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</code></pre>
+<pre><code>##  [1] &quot;Haajira&quot;  &quot;Ishika&quot;   &quot;Lily-Ann&quot; &quot;Delara&quot;   &quot;Ashir&quot;    &quot;Kerensa&quot; 
+##  [7] &quot;Demilade&quot; &quot;Tiger&quot;    &quot;Bhavika&quot;  &quot;Evie&quot;</code></pre>
+<p>And so <code>label_on_box[1]</code> will open the first box, where he will find the name <code>name_inside_box[1]</code>, which is not his own name, so he will look for the box labelled <code>name_inside_box[1]</code>.</p>
+<p>We can find this box with the function <code>which()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_inside_box[<span class="dv">1</span>]) 
+box_to_open</code></pre>
+<pre><code>## [1] 49</code></pre>
+<p>So he will look in the box <code>box_to_open</code> where there is the name</p>
+<pre class="sourceCode r"><code class="sourceCode r">name_inside_box[box_to_open]</code></pre>
+<pre><code>## [1] &quot;Kay&quot;</code></pre>
+<p>Etc. etc.</p>
+<p>We definitely need to make a loop here… and we also need a function that will encapsulate all our code, so that that we can easily do many simulations using replicate().</p>
+<p>Here is our empty function. Note that from now on, most of the code below won’t return anything, but try to follow how the function is filled.</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+
+}</code></pre>
+<p>We start by initiating the game and strategy by making a random assignment of names in the boxes and a random assignment of imaginary labels on the boxes:</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+}</code></pre>
+<p>We will then need two <code>for()</code> loops, one to loop over the prisoners and one to loop over the attempts</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      
+    }
+  }
+}</code></pre>
+<p>At each attempt, we will look at the name that is inside the box that the prisoner needs to open, and check whether it is or not the name of the prisoner:</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        
+      }
+    }
+  }
+}</code></pre>
+<p>For now we didn’t define what is the box to be opened. At the beginning it is the box labelled with the name of the prisoner. After the first attempt, it is the box labelled with the name found in the previous box</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box) 
+    }
+  }
+}</code></pre>
+<p>Let’s now add a variable called “name_found”. Let’s make it equal to FALSE for each prisoner at the beginning and let’s change it to TRUE if the name found in a box is the name of the prisoner:</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    name_found &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        name_found &lt;-<span class="ot">TRUE</span>
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box) 
+    }
+  }
+}</code></pre>
+<p>And let’s add one last variable called “success”. It will be equal to 1 at the very beginning and changed to 0 if a prisoner doesn’t find their name:</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  success &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    name_found &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        name_found &lt;-<span class="ot">TRUE</span>
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box) 
+    }
+    <span class="cf">if</span>(name_found<span class="op">==</span><span class="ot">FALSE</span>){
+      success &lt;-<span class="st"> </span><span class="dv">0</span>
+    }
+  }
+}</code></pre>
+<p>Ok I think we’re done now. At the very end, we just need to return the value of “success”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  success &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    name_found &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">50</span>){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        name_found &lt;-<span class="ot">TRUE</span>
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box) 
+    }
+    <span class="cf">if</span>(name_found<span class="op">==</span><span class="ot">FALSE</span>){
+      success &lt;-<span class="st"> </span><span class="dv">0</span>
+    }
+  }
+  <span class="kw">return</span>(success)
+}</code></pre>
+<p>Let’s try our function:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">simu_game</span>()</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>And now let’s replicate it a hundred times and make the sum of all the success</p>
+<pre class="sourceCode r"><code class="sourceCode r">simulations &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>,<span class="kw">simu_game</span>())
+
+<span class="kw">sum</span>(simulations)</code></pre>
+<pre><code>## [1] 30</code></pre>
+<p>Out of our 100 simulations, the strategy was successful 30 times! If we compare it to the probability of success of the completely random strategy, that is a huge improvement!</p>
+<p><strong>QUESTION: Could you modify our simu_game function so that it takes the number of boxes that each prisoner can open as its argument. How often does the strategy seem to work if each prisoner can open 75 boxes (there are three ??? that you need to replace)</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(???){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  success &lt;-<span class="st"> </span><span class="dv">1</span>
+  <span class="cf">for</span>(prisoner <span class="cf">in</span> list_prisoners){
+    name_found &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    <span class="cf">for</span>(attempt <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>???){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        name_found &lt;-<span class="ot">TRUE</span>
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box) 
+    }
+    <span class="cf">if</span>(name_found<span class="op">==</span><span class="ot">FALSE</span>){
+      success &lt;-<span class="st"> </span><span class="dv">0</span>
+    }
+  }
+  <span class="kw">return</span>(success)
+}
+
+simulations &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>,<span class="kw">simu_game</span>(???))
+<span class="kw">sum</span>(simulations)</code></pre>
+<p><strong>BONUS QUESTION: We could be a bit more efficient by using while() loops instead of for() loops. Can you find how to modify the code to use while() loops? (Note: You just need conditions inside the parenthesis of while(). You do need to add a few lines though to make it work. these lines are added with ??? below)</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">simu_game &lt;-<span class="st"> </span><span class="cf">function</span>(){
+  name_inside_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  label_on_box &lt;-<span class="st"> </span><span class="kw">sample</span>(list_prisoners)
+  success &lt;-<span class="st"> </span><span class="dv">1</span>
+  ???&lt;-<span class="dv">1</span>
+  <span class="cf">while</span>(??? <span class="op">&amp;</span><span class="st"> </span>???){
+    prisoner &lt;-<span class="st"> </span>list_prisoners[i]
+    name_found &lt;-<span class="st"> </span><span class="ot">FALSE</span>
+    box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>prisoner)
+    ???&lt;-<span class="dv">1</span>
+    <span class="cf">while</span>(??? <span class="op">&amp;</span><span class="st"> </span>???){
+      name_found_in_box &lt;-<span class="st"> </span>name_inside_box[box_to_open]
+      <span class="cf">if</span>(name_found_in_box<span class="op">==</span>prisoner){
+        name_found &lt;-<span class="ot">TRUE</span>
+      }
+      box_to_open &lt;-<span class="st"> </span><span class="kw">which</span>(label_on_box<span class="op">==</span>name_found_in_box)
+      ??? &lt;-???<span class="op">+</span><span class="dv">1</span>
+    }
+    <span class="cf">if</span>(name_found<span class="op">==</span><span class="ot">FALSE</span>){
+      success &lt;-<span class="st"> </span><span class="dv">0</span>
+    }
+    ??? &lt;-<span class="st"> </span>???<span class="op">+</span><span class="dv">1</span>
+  }
+  <span class="kw">return</span>(success)
+}
+
+simulations &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">100</span>,<span class="kw">simu_game</span>())
+<span class="kw">sum</span>(simulations)</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Online_R_Course.pdf", "Online_R_Course.epub"],
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

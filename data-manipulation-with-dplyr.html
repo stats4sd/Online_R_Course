@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Data Manipulation with dplyr | Online R Course</title>
+  <meta name="description" content="Chapter 5 Data Manipulation with dplyr | Online R Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Data Manipulation with dplyr | Online R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Data Manipulation with dplyr | Online R Course" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="graphics-with-ggplot2.html">
+<link rel="next" href="importing-data.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i><b>2</b> Setting up</a><ul>
+<li class="chapter" data-level="2.1" data-path="setting-up.html"><a href="setting-up.html#about-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> About R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="setting-up.html"><a href="setting-up.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setting-up.html"><a href="setting-up.html#get-the-data"><i class="fa fa-check"></i><b>2.2</b> Get the data</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up.html"><a href="setting-up.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.3</b> Navigating RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="setting-up.html"><a href="setting-up.html#console"><i class="fa fa-check"></i><b>2.3.1</b> Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setting-up.html"><a href="setting-up.html#environment"><i class="fa fa-check"></i><b>2.3.2</b> Environment</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setting-up.html"><a href="setting-up.html#packages-help"><i class="fa fa-check"></i><b>2.3.3</b> Packages, Help</a></li>
+<li class="chapter" data-level="2.3.4" data-path="setting-up.html"><a href="setting-up.html#source"><i class="fa fa-check"></i><b>2.3.4</b> Source</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="setting-up.html"><a href="setting-up.html#r-markdown"><i class="fa fa-check"></i><b>2.4</b> R Markdown</a></li>
+<li class="chapter" data-level="2.5" data-path="setting-up.html"><a href="setting-up.html#comments"><i class="fa fa-check"></i><b>2.5</b> Comments</a></li>
+<li class="chapter" data-level="2.6" data-path="setting-up.html"><a href="setting-up.html#getting-the-files"><i class="fa fa-check"></i><b>2.6</b> Getting the files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base-R</a><ul>
+<li class="chapter" data-level="3.1" data-path="base-r.html"><a href="base-r.html#objects-and-functions"><i class="fa fa-check"></i><b>3.1</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="base-r.html"><a href="base-r.html#naming-objects"><i class="fa fa-check"></i><b>3.1.1</b> Naming objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="base-r.html"><a href="base-r.html#errors"><i class="fa fa-check"></i><b>3.1.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="base-r.html"><a href="base-r.html#functions"><i class="fa fa-check"></i><b>3.2</b> Functions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="base-r.html"><a href="base-r.html#help"><i class="fa fa-check"></i><b>3.2.1</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="base-r.html"><a href="base-r.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="base-r.html"><a href="base-r.html#quotation-marks"><i class="fa fa-check"></i><b>3.4</b> Quotation Marks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#welcome-to-ggplot"><i class="fa fa-check"></i><b>4.1</b> Welcome to ggplot</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#ggplot2_setting_up"><i class="fa fa-check"></i><b>4.2</b> Setting up</a></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#description-of-the-pulse-of-the-nation-dataset"><i class="fa fa-check"></i><b>4.3</b> Description of the “Pulse of the Nation” Dataset</a></li>
+<li class="chapter" data-level="4.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#main-components-of-ggplot2"><i class="fa fa-check"></i><b>4.4</b> Main components of ggplot2</a></li>
+<li class="chapter" data-level="4.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#first-ggplot2-graph"><i class="fa fa-check"></i><b>4.5</b> First ggplot2 graph</a></li>
+<li class="chapter" data-level="4.6" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#adding-colour"><i class="fa fa-check"></i><b>4.6</b> Adding colour</a></li>
+<li class="chapter" data-level="4.7" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms"><i class="fa fa-check"></i><b>4.7</b> More Geoms</a></li>
+<li class="chapter" data-level="4.8" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>4.8</b> Scales</a></li>
+<li class="chapter" data-level="4.9" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#layering"><i class="fa fa-check"></i><b>4.9</b> Layering</a></li>
+<li class="chapter" data-level="4.10" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms-1"><i class="fa fa-check"></i><b>4.10</b> More geoms</a></li>
+<li class="chapter" data-level="4.11" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#comparing-attractiveness-across-gender"><i class="fa fa-check"></i><b>4.11</b> Comparing attractiveness across gender</a></li>
+<li class="chapter" data-level="4.12" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#splitting-plots-using-facets"><i class="fa fa-check"></i><b>4.12</b> Splitting plots using Facets</a></li>
+<li class="chapter" data-level="4.13" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-and-labels"><i class="fa fa-check"></i><b>4.13</b> Themes and labels</a></li>
+<li class="chapter" data-level="4.14" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#recap-exercises"><i class="fa fa-check"></i><b>4.14</b> Recap Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#set-up-for-session"><i class="fa fa-check"></i><b>5.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#description-of-datasets-being-used"><i class="fa fa-check"></i><b>5.2</b> Description of Datasets Being Used</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slicing-filter-and-select"><i class="fa fa-check"></i><b>5.3</b> Slicing, Filter and Select</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#creating-new-dataframe"><i class="fa fa-check"></i><b>5.4</b> Creating new dataframe</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#column-transformations"><i class="fa fa-check"></i><b>5.5</b> Column Transformations</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#more-ways-to-filter"><i class="fa fa-check"></i><b>5.6</b> More ways to filter</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregationgrouping"><i class="fa fa-check"></i><b>5.7</b> Aggregation/Grouping</a></li>
+<li class="chapter" data-level="5.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.8</b> Pipes</a></li>
+<li class="chapter" data-level="5.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#the-summarise-function"><i class="fa fa-check"></i><b>5.9</b> The summarise() function</a></li>
+<li class="chapter" data-level="5.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging"><i class="fa fa-check"></i><b>5.10</b> Arranging</a></li>
+<li class="chapter" data-level="5.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summary"><i class="fa fa-check"></i><b>5.11</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>6</b> Importing Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="importing-data.html"><a href="importing-data.html#placeholder"><i class="fa fa-check"></i><b>6.1</b> Placeholder</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data.html"><a href="importing-data.html#introduction-to-ukireland-dataset"><i class="fa fa-check"></i><b>6.2</b> Introduction to UKIreland dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="importing-data.html"><a href="importing-data.html#reading-in-data-from-csv"><i class="fa fa-check"></i><b>6.3</b> Reading in data from CSV</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data.html"><a href="importing-data.html#reading-in-from-excel"><i class="fa fa-check"></i><b>6.4</b> Reading in from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>7</b> Merging datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="merging-datasets.html"><a href="merging-datasets.html#set-up-for-session-1"><i class="fa fa-check"></i><b>7.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="7.2" data-path="merging-datasets.html"><a href="merging-datasets.html#binding"><i class="fa fa-check"></i><b>7.2</b> Binding</a></li>
+<li class="chapter" data-level="7.3" data-path="merging-datasets.html"><a href="merging-datasets.html#introducing-merging"><i class="fa fa-check"></i><b>7.3</b> Introducing merging</a></li>
+<li class="chapter" data-level="7.4" data-path="merging-datasets.html"><a href="merging-datasets.html#applying-merging"><i class="fa fa-check"></i><b>7.4</b> Applying merging</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="merging-datasets.html"><a href="merging-datasets.html#piping-into-ggplot-some-new-geoms"><i class="fa fa-check"></i><b>7.4.1</b> Piping into ggplot (+ some new geoms)</a></li>
+<li class="chapter" data-level="7.4.2" data-path="merging-datasets.html"><a href="merging-datasets.html#challenging-merging"><i class="fa fa-check"></i><b>7.4.2</b> Challenging Merging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reshaping-data.html"><a href="reshaping-data.html"><i class="fa fa-check"></i><b>8</b> Reshaping Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="reshaping-data.html"><a href="reshaping-data.html#going-long"><i class="fa fa-check"></i><b>8.1</b> Going Long</a></li>
+<li class="chapter" data-level="8.2" data-path="reshaping-data.html"><a href="reshaping-data.html#going-wide"><i class="fa fa-check"></i><b>8.2</b> Going wide</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="reshaping-data.html"><a href="reshaping-data.html#exercises"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>9</b> Modelling</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelling.html"><a href="modelling.html#set-up-for-session-2"><i class="fa fa-check"></i><b>9.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="9.2" data-path="modelling.html"><a href="modelling.html#exploring-data"><i class="fa fa-check"></i><b>9.2</b> Exploring Data</a></li>
+<li class="chapter" data-level="9.3" data-path="modelling.html"><a href="modelling.html#fitting-model"><i class="fa fa-check"></i><b>9.3</b> Fitting Model</a></li>
+<li class="chapter" data-level="9.4" data-path="modelling.html"><a href="modelling.html#checking-model"><i class="fa fa-check"></i><b>9.4</b> Checking Model</a></li>
+<li class="chapter" data-level="9.5" data-path="modelling.html"><a href="modelling.html#updating-model"><i class="fa fa-check"></i><b>9.5</b> Updating Model</a></li>
+<li class="chapter" data-level="9.6" data-path="modelling.html"><a href="modelling.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>9.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="9.7" data-path="modelling.html"><a href="modelling.html#extending-to-multiple-regression"><i class="fa fa-check"></i><b>9.7</b> Extending to multiple regression:</a></li>
+<li class="chapter" data-level="9.8" data-path="modelling.html"><a href="modelling.html#exercise"><i class="fa fa-check"></i><b>9.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>10</b> Simulation</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulation.html"><a href="simulation.html#description-of-the-session-goal"><i class="fa fa-check"></i><b>10.1</b> Description of the session goal</a></li>
+<li class="chapter" data-level="10.2" data-path="simulation.html"><a href="simulation.html#find-and-install-r-packages"><i class="fa fa-check"></i><b>10.2</b> Find and install R packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simulation.html"><a href="simulation.html#sampling-from-data-or-known-distributions"><i class="fa fa-check"></i><b>10.3</b> Sampling from data or known distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="simulation.html"><a href="simulation.html#sampling-from-data"><i class="fa fa-check"></i><b>10.4</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.5" data-path="simulation.html"><a href="simulation.html#generating-random-numbers-from-distributions"><i class="fa fa-check"></i><b>10.5</b> Generating random numbers from distributions</a></li>
+<li class="chapter" data-level="10.6" data-path="simulation.html"><a href="simulation.html#reproducing-samples"><i class="fa fa-check"></i><b>10.6</b> Reproducing samples</a></li>
+<li class="chapter" data-level="10.7" data-path="simulation.html"><a href="simulation.html#sampling-from-data-1"><i class="fa fa-check"></i><b>10.7</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.8" data-path="simulation.html"><a href="simulation.html#making-functions"><i class="fa fa-check"></i><b>10.8</b> Making functions</a></li>
+<li class="chapter" data-level="10.9" data-path="simulation.html"><a href="simulation.html#when-to-write-your-own-functions"><i class="fa fa-check"></i><b>10.9</b> When to write your own functions</a></li>
+<li class="chapter" data-level="10.10" data-path="simulation.html"><a href="simulation.html#iterations-loops"><i class="fa fa-check"></i><b>10.10</b> Iterations (loops)</a></li>
+<li class="chapter" data-level="10.11" data-path="simulation.html"><a href="simulation.html#puttng-it-all-together"><i class="fa fa-check"></i><b>10.11</b> Puttng it all together</a></li>
+<li class="chapter" data-level="10.12" data-path="simulation.html"><a href="simulation.html#simulation-of-the-best-strategy"><i class="fa fa-check"></i><b>10.12</b> Simulation of the best strategy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://stats4sd.org/" target="blank">By Statistics for Sustianable Development</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-dplyr" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Data Manipulation with dplyr</h1>
+<p>The previous chapter introduced <code>ggplot2</code> which expanded our Base-R vocabulary to help us visualise our data easier.</p>
+<p>Now, what if our dataset isn’t organised quite the way we want it to create a plot? Maybe it’s missing a column we need? Maybe missing values are encoded stragangely? Perhaps we need to standarise the units in a column?</p>
+<p>We can use another package to solve these problems - <code>dplyr</code>! <span class="citation">(Wickham, François, et al. <a href="#ref-R-dplyr">2019</a>)</span></p>
+<p>Like <code>ggplot2</code>, it adds more words to our R vocabulary and is focused on organising your data. <code>dplyr</code> is short for “data frame plier”. Data frames are an object type in <code>R</code> but we don’t think it is useful to discuss object types in this tutorial. <code>data frames</code> are essentially tables that stores your data in R.</p>
+<div id="set-up-for-session" class="section level2">
+<h2><span class="header-section-number">5.1</span> Set Up for Session</h2>
+<p>Similarly to the previous chapter, it is assumed you have R Studio running and have installed <code>ggplot2</code> and <code>dplyr</code>. If not, run the following code;</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;ggplot2&quot;</span>,<span class="st">&quot;dplyr&quot;</span>))</code></pre>
+<p>We begin by loading <code>dplyr</code> and <code>ggplot2</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)</code></pre>
+<p>When you load <code>dplyr</code> you will get a warning message;</p>
+<p><img src="Images/dplyrerror.png" width="226" /></p>
+<p><strong>Don’t worry!</strong>.</p>
+<p>What it is saying is that <code>dplyr</code> has a few functions with the same name as built-in functions, so it will now use the ones from <code>dplyr</code> by default when these are called.</p>
+<p><strong>QUESTION: Can you match the interpretation of the error with what is written in the error message? Why do you think they haved used the phrase ‘masked’?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)</code></pre>
+<p>Let’s start by loading the miniIMDB dataset. This process is that same as described in the <a href="graphics-with-ggplot2.html#ggplot2_setting_up">previous chapter</a> but loading <code>04-miniImdb.RData</code> instead of <code>03 Pulse.RData</code>.</p>
+</div>
+<div id="description-of-datasets-being-used" class="section level2">
+<h2><span class="header-section-number">5.2</span> Description of Datasets Being Used</h2>
+<p>The “imdb” dataset has been built from the subsets of the Internet Movie Database made available for non-commercial purposes by the IMDb team: <span class="citation">IMDB (<a href="#ref-imdb">2018</a>)</span></p>
+<p>It contains the following informations for all the entries having more than 500 votes, that are not of type “tvEpisodes” and for which information about year of release, running time and director(s) was available at the time of extraction (24/10/2018):</p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>title</td>
+<td>the popular title of the entry</td>
+</tr>
+<tr class="even">
+<td>type</td>
+<td>type of the entry: movie short, tvMiniSeries, tvMovie, tvSeries, tvShort, tvSpecial, video or videoGame</td>
+</tr>
+<tr class="odd">
+<td>year</td>
+<td>the year of release or start of release for series</td>
+</tr>
+<tr class="even">
+<td>length</td>
+<td>the duration of the running time in minutes</td>
+</tr>
+<tr class="odd">
+<td>director</td>
+<td>the director (or director appearing first in the list of directors)</td>
+</tr>
+<tr class="even">
+<td>birthYear</td>
+<td>year of birth of director</td>
+</tr>
+<tr class="odd">
+<td>NumVotes</td>
+<td>number of votes for the entry</td>
+</tr>
+<tr class="even">
+<td>averageRating</td>
+<td>IMDb’s weighted average rating for the entry</td>
+</tr>
+</tbody>
+</table>
+<p>As well as a list of logical (TRUE/FALSE) columns qualifying the genre of the entry:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Genres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">animation</td>
+</tr>
+<tr class="even">
+<td align="center">action</td>
+</tr>
+<tr class="odd">
+<td align="center">adventure</td>
+</tr>
+<tr class="even">
+<td align="center">comedy</td>
+</tr>
+<tr class="odd">
+<td align="center">documentary</td>
+</tr>
+<tr class="even">
+<td align="center">fantasy</td>
+</tr>
+<tr class="odd">
+<td align="center">romance</td>
+</tr>
+<tr class="even">
+<td align="center">sci_fi</td>
+</tr>
+<tr class="odd">
+<td align="center">thriller</td>
+</tr>
+</tbody>
+</table>
+<p>The “miniImdb” dataset is a small subset of “imdb”. It contains the following 5 first variables of “imdb” for the titles that have received more than 1 million votes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">miniImdb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">title</td>
+</tr>
+<tr class="even">
+<td align="center">type</td>
+</tr>
+<tr class="odd">
+<td align="center">year</td>
+</tr>
+<tr class="even">
+<td align="center">length</td>
+</tr>
+<tr class="odd">
+<td align="center">numVotes</td>
+</tr>
+</tbody>
+</table>
+<p>We will start by using the miniImdb dataset but we will later move to the full imdb dataset when we get more familiar with data manipulation.</p>
+</div>
+<div id="slicing-filter-and-select" class="section level2">
+<h2><span class="header-section-number">5.3</span> Slicing, Filter and Select</h2>
+<p>We can use square brackets as a ‘quick’ way to get subsets of datasets (also called slicing) based on position;</p>
+<p><code>DATASETNAME[ROW NUMBERS,COLUMN NUMBERS]</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">miniImdb[<span class="dv">1</span>,]</code></pre>
+<pre><code>## # A tibble: 1 x 5
+##   title         type   year length numVotes
+##   &lt;chr&gt;         &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 The Godfather movie  1972    175  1374861</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">miniImdb[,<span class="dv">1</span>]</code></pre>
+<pre><code>## # A tibble: 29 x 1
+##    title                                            
+##    &lt;chr&gt;                                            
+##  1 The Godfather                                    
+##  2 Star Wars: Episode IV - A New Hope               
+##  3 Star Wars: Episode V - The Empire Strikes Back   
+##  4 The Silence of the Lambs                         
+##  5 Schindler&#39;s List                                 
+##  6 Forrest Gump                                     
+##  7 Pulp Fiction                                     
+##  8 The Shawshank Redemption                         
+##  9 Se7en                                            
+## 10 The Lord of the Rings: The Fellowship of the Ring
+## # ... with 19 more rows</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">miniImdb[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   title                                          type 
+##   &lt;chr&gt;                                          &lt;fct&gt;
+## 1 The Godfather                                  movie
+## 2 Star Wars: Episode IV - A New Hope             movie
+## 3 Star Wars: Episode V - The Empire Strikes Back movie
+## 4 The Silence of the Lambs                       movie
+## 5 Schindler&#39;s List                               movie</code></pre>
+<p>But to get more useful subsets we would probably need to base these on characteristics or names rather than positions. We can use the <code>filter()</code> and <code>select()</code> functions for that from <code>dplyr</code>.</p>
+<p>filter() helps you get the rows you are interested in</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, type<span class="op">==</span><span class="st">&quot;tvSeries&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, year<span class="op">&gt;</span><span class="dv">2005</span>)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   title           type      year length numVotes
+##   &lt;chr&gt;           &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 Breaking Bad    tvSeries  2008     49  1124817
+## 2 Game of Thrones tvSeries  2011     57  1365039</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    title                 type      year length numVotes
+##    &lt;chr&gt;                 &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+##  1 Inglourious Basterds  movie     2009    153  1069563
+##  2 The Departed          movie     2006    151  1031834
+##  3 The Dark Knight       movie     2008    152  1975810
+##  4 The Prestige          movie     2006    130  1020039
+##  5 Avatar                movie     2009    162  1005456
+##  6 Interstellar          movie     2014    169  1218930
+##  7 The Avengers          movie     2012    143  1129041
+##  8 Breaking Bad          tvSeries  2008     49  1124817
+##  9 Game of Thrones       tvSeries  2011     57  1365039
+## 10 The Dark Knight Rises movie     2012    164  1335842
+## 11 Inception             movie     2010    148  1755897
+## 12 Django Unchained      movie     2012    165  1156987</code></pre>
+<p>Whereas select helps you keep only the columns that you care about, by listing their names</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(miniImdb,title,year, numVotes)</code></pre>
+<pre><code>## # A tibble: 29 x 3
+##    title                                              year numVotes
+##    &lt;chr&gt;                                             &lt;dbl&gt;    &lt;int&gt;
+##  1 The Godfather                                      1972  1374861
+##  2 Star Wars: Episode IV - A New Hope                 1977  1078317
+##  3 Star Wars: Episode V - The Empire Strikes Back     1980  1008039
+##  4 The Silence of the Lambs                           1991  1075970
+##  5 Schindler&#39;s List                                   1993  1035642
+##  6 Forrest Gump                                       1994  1527656
+##  7 Pulp Fiction                                       1994  1566510
+##  8 The Shawshank Redemption                           1994  2006753
+##  9 Se7en                                              1995  1226169
+## 10 The Lord of the Rings: The Fellowship of the Ring  2001  1445423
+## # ... with 19 more rows</code></pre>
+<p>or by going in sequence - from title to year for example</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(miniImdb,title<span class="op">:</span>year)</code></pre>
+<pre><code>## # A tibble: 29 x 3
+##    title                                             type   year
+##    &lt;chr&gt;                                             &lt;fct&gt; &lt;dbl&gt;
+##  1 The Godfather                                     movie  1972
+##  2 Star Wars: Episode IV - A New Hope                movie  1977
+##  3 Star Wars: Episode V - The Empire Strikes Back    movie  1980
+##  4 The Silence of the Lambs                          movie  1991
+##  5 Schindler&#39;s List                                  movie  1993
+##  6 Forrest Gump                                      movie  1994
+##  7 Pulp Fiction                                      movie  1994
+##  8 The Shawshank Redemption                          movie  1994
+##  9 Se7en                                             movie  1995
+## 10 The Lord of the Rings: The Fellowship of the Ring movie  2001
+## # ... with 19 more rows</code></pre>
+<p>So in summary,<br />
+<code>filter()</code> works by subsetting rows from a dataset<br />
+<code>select()</code> works for subset of columns</p>
+<p><strong>QUESTION: Write the code that would give you all the entries that have been released before 2000</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, ????)</code></pre>
+<p><strong>QUESTION: What would you do to only keep the columns title, length and numVotes from the miniImdb dataset</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(miniImdb,????)</code></pre>
+</div>
+<div id="creating-new-dataframe" class="section level2">
+<h2><span class="header-section-number">5.4</span> Creating new dataframe</h2>
+<p>All of these subsets so far have only produced temporary results printed into the console window. We usually subset data so that we can then do something with it later. One option is to assign the subset to a new dataframe with the arrow: “&lt;-”. We will learn another way later.</p>
+<pre class="sourceCode r"><code class="sourceCode r">recentEntries&lt;-<span class="kw">filter</span>(miniImdb, year<span class="op">&gt;</span><span class="dv">2005</span>)
+recentEntries</code></pre>
+<pre><code>## # A tibble: 12 x 5
+##    title                 type      year length numVotes
+##    &lt;chr&gt;                 &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+##  1 Inglourious Basterds  movie     2009    153  1069563
+##  2 The Departed          movie     2006    151  1031834
+##  3 The Dark Knight       movie     2008    152  1975810
+##  4 The Prestige          movie     2006    130  1020039
+##  5 Avatar                movie     2009    162  1005456
+##  6 Interstellar          movie     2014    169  1218930
+##  7 The Avengers          movie     2012    143  1129041
+##  8 Breaking Bad          tvSeries  2008     49  1124817
+##  9 Game of Thrones       tvSeries  2011     57  1365039
+## 10 The Dark Knight Rises movie     2012    164  1335842
+## 11 Inception             movie     2010    148  1755897
+## 12 Django Unchained      movie     2012    165  1156987</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">tvSeriesData&lt;-<span class="kw">filter</span>(miniImdb, type<span class="op">==</span><span class="st">&quot;tvSeries&quot;</span>)
+tvSeriesData</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   title           type      year length numVotes
+##   &lt;chr&gt;           &lt;fct&gt;    &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 Breaking Bad    tvSeries  2008     49  1124817
+## 2 Game of Thrones tvSeries  2011     57  1365039</code></pre>
+<p>Note the == sign to mean IS EQUAL TO<br />
+A single equals sign is an assignment statement: x=y “set x to be equal y”<br />
+A double equals sign is a question x==y “is x equal to y?”<br />
+within the filter() function the single = sign will return an error. Not all functions may be so friendly!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, <span class="dt">type=</span><span class="st">&quot;tvSeries&quot;</span>)</code></pre>
+<pre><code>## `type` (`type = &quot;tvSeries&quot;`) must not be named, do you need `==`?</code></pre>
+<p>Remember R is case sensitive, and cannot do any association of meaning on its own</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, type<span class="op">==</span><span class="st">&quot;tv Series&quot;</span>)</code></pre>
+<pre><code>## # A tibble: 0 x 5
+## # ... with 5 variables: title &lt;chr&gt;, type &lt;fct&gt;, year &lt;dbl&gt;, length &lt;dbl&gt;,
+## #   numVotes &lt;int&gt;</code></pre>
+<p>nothing</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, type<span class="op">==</span><span class="st">&quot;tvseries&quot;</span>)</code></pre>
+<pre><code>## # A tibble: 0 x 5
+## # ... with 5 variables: title &lt;chr&gt;, type &lt;fct&gt;, year &lt;dbl&gt;, length &lt;dbl&gt;,
+## #   numVotes &lt;int&gt;</code></pre>
+<p>also nothing</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb, Type<span class="op">==</span><span class="st">&quot;tvSeries&quot;</span>)</code></pre>
+<pre><code>## Error: object &#39;Type&#39; not found</code></pre>
+<p>still nothing</p>
+<p>We can also produce a subset of a subset:</p>
+<pre class="sourceCode r"><code class="sourceCode r">titleVotesRecent&lt;-<span class="kw">select</span>(recentEntries, title, numVotes)
+titleVotesRecent</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##    title                 numVotes
+##    &lt;chr&gt;                    &lt;int&gt;
+##  1 Inglourious Basterds   1069563
+##  2 The Departed           1031834
+##  3 The Dark Knight        1975810
+##  4 The Prestige           1020039
+##  5 Avatar                 1005456
+##  6 Interstellar           1218930
+##  7 The Avengers           1129041
+##  8 Breaking Bad           1124817
+##  9 Game of Thrones        1365039
+## 10 The Dark Knight Rises  1335842
+## 11 Inception              1755897
+## 12 Django Unchained       1156987</code></pre>
+<p><strong>QUESTION: Produce a subset of the data for the type “movie” and assign it to an object called movies</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">??? &lt;-<span class="st"> </span><span class="kw">filter</span>(miniImdb, ????<span class="op">==</span>????)
+???</code></pre>
+<p><strong>QUESTION: Is there any movie who received more than 2 million votes?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(????, ????)</code></pre>
+</div>
+<div id="column-transformations" class="section level2">
+<h2><span class="header-section-number">5.5</span> Column Transformations</h2>
+<p>We can create new columns with the function <code>mutate()</code><br />
+For example let’s try to convert the length of the entries in hour rather than in minutes</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(miniImdb, <span class="dt">lengthInHour =</span> length<span class="op">/</span><span class="dv">60</span>)</code></pre>
+<pre><code>## # A tibble: 29 x 6
+##    title                           type   year length numVotes lengthInHour
+##    &lt;chr&gt;                           &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;        &lt;dbl&gt;
+##  1 The Godfather                   movie  1972    175  1374861         2.92
+##  2 Star Wars: Episode IV - A New ~ movie  1977    121  1078317         2.02
+##  3 Star Wars: Episode V - The Emp~ movie  1980    124  1008039         2.07
+##  4 The Silence of the Lambs        movie  1991    118  1075970         1.97
+##  5 Schindler&#39;s List                movie  1993    195  1035642         3.25
+##  6 Forrest Gump                    movie  1994    142  1527656         2.37
+##  7 Pulp Fiction                    movie  1994    154  1566510         2.57
+##  8 The Shawshank Redemption        movie  1994    142  2006753         2.37
+##  9 Se7en                           movie  1995    127  1226169         2.12
+## 10 The Lord of the Rings: The Fel~ movie  2001    178  1445423         2.97
+## # ... with 19 more rows</code></pre>
+<p>The usual signs that R uses to make calculations are:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Symbol</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*</code></td>
+<td>multiply</td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>divide</td>
+</tr>
+<tr class="odd">
+<td><code>+</code></td>
+<td>add</td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>substract</td>
+</tr>
+<tr class="odd">
+<td><code>**</code></td>
+<td>raise to the power</td>
+</tr>
+</tbody>
+</table>
+<p><strong>QUESTION: Create a new dataframe adding a column giving the number of votes in million to miniImdb and show only the title and this newly created column</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">miniImdbMillion &lt;-<span class="st"> </span><span class="kw">mutate</span>(miniImdb, ???? =<span class="st"> </span>????)
+<span class="kw">select</span>(????, ????)</code></pre>
+</div>
+<div id="more-ways-to-filter" class="section level2">
+<h2><span class="header-section-number">5.6</span> More ways to filter</h2>
+<p>When we look at the full imdb dataset, it will be useful to know that we can use multiple conditions and additional fonctions to filter rows:</p>
+<p>Here are the possible logical symbols to use when doing conditions in R:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Code</strong></th>
+<th><strong>Meaning</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>==</td>
+<td>EQUALS</td>
+</tr>
+<tr class="even">
+<td>&amp;</td>
+<td>AND</td>
+</tr>
+<tr class="odd">
+<td>!</td>
+<td>NOT</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td>less than</td>
+</tr>
+<tr class="even">
+<td>&gt;</td>
+<td>more than</td>
+</tr>
+</tbody>
+</table>
+<p>And we can combine these together. On the “recentEntries” data let’s get all the entries with a length between 1h30 (90min) and 2h30 (150min)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(recentEntries,length<span class="op">&gt;</span><span class="dv">90</span> <span class="op">&amp;</span><span class="st"> </span>length<span class="op">&lt;</span><span class="dv">150</span>)</code></pre>
+<pre><code>## # A tibble: 3 x 5
+##   title        type   year length numVotes
+##   &lt;chr&gt;        &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 The Prestige movie  2006    130  1020039
+## 2 The Avengers movie  2012    143  1129041
+## 3 Inception    movie  2010    148  1755897</code></pre>
+<p>We can also use functions like <code>max()</code> or <code>min()</code> to help us with the filtering. For example, maybe we want to know which entrie’s length is the largest</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(recentEntries,length<span class="op">==</span><span class="kw">max</span>(length))</code></pre>
+<pre><code>## # A tibble: 1 x 5
+##   title        type   year length numVotes
+##   &lt;chr&gt;        &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 Interstellar movie  2014    169  1218930</code></pre>
+<p>Finally, going back to our very first examples, note that the function <code>slice()</code> is an alternative way to get specific rows by positions in a dataset. We will use it on the full imdb dataset</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">slice</span>(recentEntries, <span class="dv">1</span>)</code></pre>
+<pre><code>## # A tibble: 1 x 5
+##   title                type   year length numVotes
+##   &lt;chr&gt;                &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 Inglourious Basterds movie  2009    153  1069563</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">slice</span>(miniImdb, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)</code></pre>
+<pre><code>## # A tibble: 5 x 5
+##   title                                         type   year length numVotes
+##   &lt;chr&gt;                                         &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;
+## 1 The Godfather                                 movie  1972    175  1374861
+## 2 Star Wars: Episode IV - A New Hope            movie  1977    121  1078317
+## 3 Star Wars: Episode V - The Empire Strikes Ba~ movie  1980    124  1008039
+## 4 The Silence of the Lambs                      movie  1991    118  1075970
+## 5 Schindler&#39;s List                              movie  1993    195  1035642</code></pre>
+<p><strong>QUESTION: Which movie has the oldest year of release among the movies of the miniImdb dataset?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(miniImdb,????)</code></pre>
+<p><strong>QUESTION: Which entry has the oldest year of release in the full imdb dataset?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(????,????)</code></pre>
+<p><strong>QUESTION: I’m trying to find out which movie has the oldest year of release in the full imdb dataset. Can you guess why this code doesn’t work? How should you modify it?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(imdb, type<span class="op">==</span><span class="st">&quot;movie&quot;</span> <span class="op">&amp;</span><span class="st"> </span>year<span class="op">==</span><span class="kw">min</span>(year))</code></pre>
+<pre><code>## # A tibble: 0 x 17
+## # ... with 17 variables: title &lt;chr&gt;, type &lt;fct&gt;, year &lt;dbl&gt;,
+## #   length &lt;dbl&gt;, numVotes &lt;int&gt;, averageRating &lt;dbl&gt;, director &lt;chr&gt;,
+## #   birthYear &lt;dbl&gt;, animation &lt;lgl&gt;, action &lt;lgl&gt;, adventure &lt;lgl&gt;,
+## #   comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;, romance &lt;lgl&gt;,
+## #   sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+</div>
+<div id="aggregationgrouping" class="section level2">
+<h2><span class="header-section-number">5.7</span> Aggregation/Grouping</h2>
+<p>The imdb dataset contains entries of various types, but we only saw entries of type movie and tvSeries so far, because the other types don’t have enough votes to be in the miniImdb dataset. So we will now use the full imdb dataset.</p>
+<p>One thing that would be interesting is to get the entries with highest number of votes for each type of entry. You know how to do it for each type separately, by filtering on the specific type first:</p>
+<pre class="sourceCode r"><code class="sourceCode r">short&lt;-<span class="kw">filter</span>(imdb,type<span class="op">==</span><span class="st">&quot;short&quot;</span>)
+<span class="kw">filter</span>(short, numVotes<span class="op">==</span><span class="kw">max</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 1 x 17
+##   title type   year length numVotes averageRating director birthYear
+##   &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 Kung~ short  2015     31    50331             8 David S~        NA
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>But wouldn’t it be nice to do it for all types in a single move? We can do so using the function group_by() instead of filter() for the first step</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb_type&lt;-<span class="kw">group_by</span>(imdb,type)
+<span class="kw">filter</span>(imdb_type, numVotes<span class="op">==</span><span class="kw">max</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 9 x 17
+## # Groups:   type [9]
+##   title type   year length numVotes averageRating director birthYear
+##   &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 Eddi~ tvSp~  1983     69    13995           8.2 Bruce G~        NA
+## 2 The ~ movie  1994    142  2006753           9.3 Frank D~      1959
+## 3 Band~ tvMi~  2001    594   297551           9.5 David F~      1959
+## 4 The ~ video  2003    100    66405           7.4 Shin&#39;ic~        NA
+## 5 High~ tvMo~  2006     98    70030           5.3 Kenny O~      1950
+## 6 Shre~ tvSh~  2007     21    11025           6.5 Gary Tr~      1960
+## 7 Game~ tvSe~  2011     57  1365039           9.5 Matt Sh~      1975
+## 8 Halo~ vide~  2009     34     3077           7.6 Rich Wi~        NA
+## 9 Kung~ short  2015     31    50331           8   David S~        NA
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p><strong>QUESTION: Can you find out which title has the oldest release year for each type of entry?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb_type&lt;-<span class="kw">group_by</span>(imdb,????)
+<span class="kw">filter</span>(????, ????<span class="op">==</span>????)</code></pre>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">5.8</span> Pipes</h2>
+<p>I’m a big sci-fi fan, and I see that none of the most voted entries are of this genre (see above). Let’s use filter to only keep the sci-fi entries:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdbSciFi&lt;-<span class="kw">filter</span>(imdb,sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>)
+imdbSciFi_type&lt;-<span class="kw">group_by</span>(imdbSciFi,type)
+<span class="kw">filter</span>(imdbSciFi_type, numVotes<span class="op">==</span><span class="kw">max</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 7 x 17
+## # Groups:   type [7]
+##   title type   year length numVotes averageRating director birthYear
+##   &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 A Tr~ short  1902     13    36791           8.2 Georges~      1861
+## 2 Batt~ tvMo~  2007    101    18920           7.7 FÃ©lix ~      1951
+## 3 Robo~ tvSh~  2007     30     7134           8.2 Seth Gr~      1974
+## 4 Ince~ movie  2010    148  1755897           8.8 Christo~      1970
+## 5 Deat~ video  2010    100    27769           5.6 Roel Re~      1969
+## 6 The ~ tvSe~  2010     44   755188           8.4 Lesli L~        NA
+## 7 11.2~ tvMi~  2016     60    56331           8.2 James S~        NA
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>To get from the original data to this output we had to create a number of intermediate steps<br />
+imdb -&gt; filter on sci-fi -&gt; group_by type -&gt; filter to max<br />
+We either need to explicitly save each of the steps as a dataeframe OR we can be clever and use pipes `<code>%&gt;%</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(type) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">filter</span>(numVotes<span class="op">==</span><span class="kw">max</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 7 x 17
+## # Groups:   type [7]
+##   title type   year length numVotes averageRating director birthYear
+##   &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 A Tr~ short  1902     13    36791           8.2 Georges~      1861
+## 2 Batt~ tvMo~  2007    101    18920           7.7 FÃ©lix ~      1951
+## 3 Robo~ tvSh~  2007     30     7134           8.2 Seth Gr~      1974
+## 4 Ince~ movie  2010    148  1755897           8.8 Christo~      1970
+## 5 Deat~ video  2010    100    27769           5.6 Roel Re~      1969
+## 6 The ~ tvSe~  2010     44   755188           8.4 Lesli L~        NA
+## 7 11.2~ tvMi~  2016     60    56331           8.2 James S~        NA
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>With the piping system we start with the name of the data (imdb).
+This then gets carried through in each step - the data from the end of line 1 gets automatically used in line 2 and so on.</p>
+<p>We do not need to call the dataframe name as the first option in the functions that we use</p>
+<p>And we can easily add on extra functions. Select() might be useful to have a quicker look at all the information we are interested in.</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(type) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">filter</span>(numVotes<span class="op">==</span><span class="kw">max</span>(numVotes)) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">select</span>(title,type,averageRating,numVotes)</code></pre>
+<pre><code>## # A tibble: 7 x 4
+## # Groups:   type [7]
+##   title                       type         averageRating numVotes
+##   &lt;chr&gt;                       &lt;fct&gt;                &lt;dbl&gt;    &lt;int&gt;
+## 1 A Trip to the Moon          short                  8.2    36791
+## 2 Battlestar Galactica: Razor tvMovie                7.7    18920
+## 3 Robot Chicken: Star Wars    tvShort                8.2     7134
+## 4 Inception                   movie                  8.8  1755897
+## 5 Death Race 2                video                  5.6    27769
+## 6 The Walking Dead            tvSeries               8.4   755188
+## 7 11.22.63                    tvMiniSeries           8.2    56331</code></pre>
+<p><strong>QUESTION: Can you find out for each type of entry, which is the best rated title using pipes?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(????) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(????<span class="op">==</span>????)</code></pre>
+</div>
+<div id="the-summarise-function" class="section level2">
+<h2><span class="header-section-number">5.9</span> The summarise() function</h2>
+<p>To know the average rating of all the movies, we could use the function summarize:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean=</span><span class="kw">mean</span>(averageRating))</code></pre>
+<pre><code>## # A tibble: 1 x 1
+##    mean
+##   &lt;dbl&gt;
+## 1  6.32</code></pre>
+<p>But we can get lot’s of other summary information, like the number of entries, using the function n() the standard deviation of the ratings using the function sd() or the average number of votes</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n=</span><span class="kw">n</span>(), <span class="dt">meanRating=</span><span class="kw">mean</span>(averageRating), <span class="dt">sdRating=</span><span class="kw">sd</span>(averageRating), <span class="dt">meanVotes=</span><span class="kw">mean</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 1 x 4
+##       n meanRating sdRating meanVotes
+##   &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 39221       6.32     1.20    17775.</code></pre>
+<p>And we can combine it with group_by to have these information for both the action and the non action movies</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(action) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">n=</span><span class="kw">n</span>(), <span class="dt">meanRating=</span><span class="kw">mean</span>(averageRating), <span class="dt">sdRating=</span><span class="kw">sd</span>(averageRating), <span class="dt">meanVotes=</span><span class="kw">mean</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   action     n meanRating sdRating meanVotes
+##   &lt;lgl&gt;  &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 FALSE  32811       6.39     1.17    14898.
+## 2 TRUE    6410       5.97     1.31    32499.</code></pre>
+<p>by the way, you can group by more than one variable</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(action, adventure, comedy, sci_fi) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">meanRating=</span><span class="kw">mean</span>(averageRating), <span class="dt">sdRating=</span><span class="kw">sd</span>(averageRating), <span class="dt">meanVotes=</span><span class="kw">mean</span>(numVotes))</code></pre>
+<pre><code>## # A tibble: 15 x 8
+## # Groups:   action, adventure, comedy [8]
+##    action adventure comedy sci_fi     n meanRating sdRating meanVotes
+##    &lt;lgl&gt;  &lt;lgl&gt;     &lt;lgl&gt;  &lt;lgl&gt;  &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+##  1 FALSE  FALSE     FALSE  FALSE  18324       6.53     1.15    13353.
+##  2 FALSE  FALSE     FALSE  TRUE    1020       5.35     1.41    24846.
+##  3 FALSE  FALSE     TRUE   FALSE  10964       6.27     1.11    12320.
+##  4 FALSE  FALSE     TRUE   TRUE     256       5.64     1.25    14883.
+##  5 FALSE  TRUE      FALSE  FALSE   1264       6.49     1.10    27982.
+##  6 FALSE  TRUE      FALSE  TRUE     107       5.55     1.60    62676.
+##  7 FALSE  TRUE      TRUE   FALSE    850       6.27     1.16    41371.
+##  8 FALSE  TRUE      TRUE   TRUE      26       6.13     1.39   102517.
+##  9 TRUE   FALSE     FALSE  FALSE   3210       6.09     1.24    19461.
+## 10 TRUE   FALSE     FALSE  TRUE     430       5.11     1.43    44512.
+## 11 TRUE   FALSE     TRUE   FALSE   1058       6.03     1.15    17225.
+## 12 TRUE   FALSE     TRUE   TRUE      34       4.97     1.34    27008.
+## 13 TRUE   TRUE      FALSE  FALSE   1184       6.03     1.37    54860.
+## 14 TRUE   TRUE      FALSE  TRUE     172       5.86     1.48   180236.
+## 15 TRUE   TRUE      TRUE   FALSE    322       5.71     1.44    36063.</code></pre>
+<p>```
+ARRANGE, UNGROUP, SLICE INTRODUCED LATER
+Let’s see what’s the lowest rated combination of genres.</p>
+<p><strong>QUESTION: Can you find the lowest rated combination of genres from above? HINT: This can be done with arrange(), ungroup() and slice()</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(action, adventure, comedy, sci_fi) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">n =</span> <span class="kw">n</span>(), <span class="dt">meanRating=</span><span class="kw">mean</span>(averageRating), <span class="dt">sdRating=</span><span class="kw">sd</span>(averageRating), <span class="dt">meanVotes=</span><span class="kw">mean</span>(numVotes)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">arrange</span>(meanRating) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">slice</span>(<span class="dv">1</span>)</code></pre>
+<pre><code>## # A tibble: 1 x 8
+##   action adventure comedy sci_fi     n meanRating sdRating meanVotes
+##   &lt;lgl&gt;  &lt;lgl&gt;     &lt;lgl&gt;  &lt;lgl&gt;  &lt;int&gt;      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 TRUE   FALSE     TRUE   TRUE      34       4.97     1.34    27008.</code></pre>
+<p>Oh boy, you probably don’t want to watch an action/comedy/sc-fi movie that wouldn’t be of genre adventure!</p>
+<p><strong>QUESTION: Can you calculate for each year, the average length and rating of the released movies? Save the result in a dataframe</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">???? &lt;-<span class="st"> </span>imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(????) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">group_by</span>(????) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarize</span>(????)</code></pre>
+<p>```</p>
+<p><strong>QUESTION: Would you manage to plot the average length of movies (as y) against the year of release (as x)?</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> ????, <span class="kw">aes</span>(<span class="dt">y=</span>????, <span class="dt">x=</span>????)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>geom_????</code></pre>
+</div>
+<div id="arranging" class="section level2">
+<h2><span class="header-section-number">5.10</span> Arranging</h2>
+<p>Ok what we probably want at this point is think about the movie we are going to watch tonight.</p>
+<p>The best rated sci-fi movie is:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(averageRating<span class="op">==</span><span class="kw">max</span>(averageRating))</code></pre>
+<pre><code>## # A tibble: 1 x 17
+##   title type   year length numVotes averageRating director birthYear
+##   &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+## 1 Ince~ movie  2010    148  1755897           8.8 Christo~      1970
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>But I already watched it</p>
+<p>Maybe, I should check the first 10 sci-fi movies in the dataset using <code>slice()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<pre><code>## # A tibble: 10 x 17
+##    title type   year length numVotes averageRating director birthYear
+##    &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1 20,0~ movie  1916    105     1342           7   Stuart ~      1883
+##  2 Dr. ~ movie  1920     49     4148           7   John S.~      1878
+##  3 The ~ movie  1925    106     4015           7.1 Harry O~      1885
+##  4 Metr~ movie  1927    153   136815           8.3 Fritz L~      1890
+##  5 Fran~ movie  1931     70    56442           7.9 James W~      1889
+##  6 Dr. ~ movie  1931     98    10969           7.7 Rouben ~      1897
+##  7 The ~ movie  1932     68     2694           6.4 Charles~      1900
+##  8 The ~ movie  1933     71    24943           7.7 James W~      1889
+##  9 Isla~ movie  1932     70     6863           7.5 Erle C.~      1896
+## 10 King~ movie  1933    100    71884           7.9 Ernest ~      1893
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>We only get very old movies, because the dataset seems to be somewhat arranged by year of release. So before using slice(), we want to arrange the movies by rating using the function <code>arrange()</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">arrange</span>(averageRating) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<pre><code>## # A tibble: 10 x 17
+##    title type   year length numVotes averageRating director birthYear
+##    &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1 Brow~ movie  2015     98      712           1.2 Francis~        NA
+##  2 Purge movie  2010     80     1131           1.4 David K~        NA
+##  3 Nukie movie  1987     95     1021           1.5 Michael~      1950
+##  4 Star~ movie  2009     81      511           1.5 Jon Bon~        NA
+##  5 Ultr~ movie  1990     81      676           1.6 Kevin T~        NA
+##  6 Alie~ movie  2011     80     1523           1.6 Lewis S~        NA
+##  7 Evil~ movie  2006     90      578           1.7 Jim Car~        NA
+##  8 Univ~ movie  2007     85     1383           1.7 Griff F~      1981
+##  9 Atla~ movie  2018     86      503           1.7 Jared C~        NA
+## 10 Turk~ movie  2006    110    14830           1.9 Kartal ~      1938
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>Look at the ratings! These are probably the worst movies ever. <code>arrange()</code> by default sorts in ascending order, so we need to arrange by descending order of rating:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(type<span class="op">==</span><span class="st">&quot;movie&quot;</span> <span class="op">&amp;</span><span class="st"> </span>sci_fi<span class="op">==</span><span class="st">&quot;TRUE&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(averageRating)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<pre><code>## # A tibble: 10 x 17
+##    title type   year length numVotes averageRating director birthYear
+##    &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+##  1 Ince~ movie  2010    148  1755897           8.8 Christo~      1970
+##  2 The ~ movie  1999    136  1439664           8.7 Lana Wa~      1965
+##  3 Inte~ movie  2014    169  1218930           8.6 Christo~      1970
+##  4 Alien movie  1979    116   684793           8.5 Ridley ~      1937
+##  5 Back~ movie  1985    116   888217           8.5 Robert ~      1951
+##  6 Term~ movie  1991    137   870521           8.5 James C~      1954
+##  7 The ~ movie  2006    130  1020039           8.5 Christo~      1970
+##  8 Alie~ movie  1986    137   579233           8.4 James C~      1954
+##  9 Lucia movie  2013    135    10022           8.4 Pawan K~        NA
+## 10 Metr~ movie  1927    153   136815           8.3 Fritz L~      1890
+## # ... with 9 more variables: animation &lt;lgl&gt;, action &lt;lgl&gt;,
+## #   adventure &lt;lgl&gt;, comedy &lt;lgl&gt;, documentary &lt;lgl&gt;, fantasy &lt;lgl&gt;,
+## #   romance &lt;lgl&gt;, sci_fi &lt;lgl&gt;, thriller &lt;lgl&gt;</code></pre>
+<p>That’s much better.</p>
+<p><strong>QUESTION: What are the 5 best rated thriller tvSeries having more than 10000 votes</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(????) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">arrange</span>(????) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">slice</span>(????)</code></pre>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">5.11</span> Summary</h2>
+<p>Key Functions learned:<br />
+<code>filter()</code><br />
+<code>select()</code><br />
+<code>mutate()</code><br />
+<code>group_by()</code><br />
+<code>summarise()</code><br />
+<code>arrange()</code></p>
+<p><strong>SUGGESTION: Write down in your own words what each of these functions does</strong></p>
+<p>Other concepts covered:<br />
+logical operators: <code>! | &amp; ==</code>
+numerical operators: <code>+ - / *</code>
+pipes<code>%&gt;%</code>
+other useful functions: <code>slice() max() min() n() mean() sd()</code></p>
+<p>Lets combine all of these concepts together into a single piece of R code!:</p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(director) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">n=</span><span class="kw">n</span>(), <span class="dt">meanRating=</span><span class="kw">mean</span>(averageRating), <span class="dt">sumVotes=</span><span class="kw">sum</span>(numVotes), <span class="dt">medianLength=</span><span class="kw">median</span>(length)) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">mutate</span>(<span class="dt">meanVotes=</span>sumVotes<span class="op">/</span>n) <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">filter</span>(n<span class="op">&gt;</span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>meanVotes<span class="op">&gt;</span><span class="dv">10000</span>) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">arrange</span>(<span class="kw">desc</span>(meanRating)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">            </span><span class="kw">select</span>(director, n, meanRating, medianLength)<span class="op">%&gt;%</span>
+<span class="st">              </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<pre><code>## # A tibble: 10 x 4
+##    director                 n meanRating medianLength
+##    &lt;chr&gt;                &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Christopher Nolan       12       8.09         124 
+##  2 Hayao Miyazaki          14       8            100.
+##  3 Spike Jonze             11       7.8           28 
+##  4 Quentin Tarantino       12       7.79         145 
+##  5 David Fincher           12       7.72         128 
+##  6 Anurag Kashyap          14       7.67         136.
+##  7 Akira Kurosawa          30       7.67         114.
+##  8 S.S. Rajamouli          11       7.62         158 
+##  9 William Wyler           28       7.62         106 
+## 10 Krzysztof Kieslowski    16       7.61          95</code></pre>
+<p><strong>QUESTION: Write down what this code does</strong></p>
+<p><strong>QUESTION: Which line could we remove by making a little modification inside the function summarize()?</strong></p>
+<p><strong>QUESTION: Did you notice the use of the function median()? Why would one prefer to use the median rather than the mean?</strong></p>
+<p><strong>BONUS CHALLENGE: Could you find among the movie entries, the 10 directors having directed their 5th movie at the youngest age? Who is the 9th one in the list? (hint: you may need to use a function that we haven’t seen yet: ungroup())</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">imdb <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(????) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ageAtRelease=</span>????) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">group_by</span>(????) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">arrange</span>(????) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">          </span><span class="kw">slice</span>(????) <span class="op">%&gt;%</span>
+<span class="st">            </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span>
+<span class="st">              </span><span class="kw">arrange</span>(????) <span class="op">%&gt;%</span>
+<span class="st">                </span><span class="kw">select</span>(????) <span class="op">%&gt;%</span>
+<span class="st">                  </span><span class="kw">slice</span>(????)</code></pre>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-imdb">
+<p>IMDB. 2018. “IMDB.” <a href="https://www.imdb.com/interfaces/">https://www.imdb.com/interfaces/</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2019. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="graphics-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Online_R_Course.pdf", "Online_R_Course.epub"],
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Merging datasets | Online R Course</title>
+  <meta name="description" content="Chapter 7 Merging datasets | Online R Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Merging datasets | Online R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Merging datasets | Online R Course" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="importing-data.html">
+<link rel="next" href="reshaping-data.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i><b>2</b> Setting up</a><ul>
+<li class="chapter" data-level="2.1" data-path="setting-up.html"><a href="setting-up.html#about-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> About R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="setting-up.html"><a href="setting-up.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setting-up.html"><a href="setting-up.html#get-the-data"><i class="fa fa-check"></i><b>2.2</b> Get the data</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up.html"><a href="setting-up.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.3</b> Navigating RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="setting-up.html"><a href="setting-up.html#console"><i class="fa fa-check"></i><b>2.3.1</b> Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setting-up.html"><a href="setting-up.html#environment"><i class="fa fa-check"></i><b>2.3.2</b> Environment</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setting-up.html"><a href="setting-up.html#packages-help"><i class="fa fa-check"></i><b>2.3.3</b> Packages, Help</a></li>
+<li class="chapter" data-level="2.3.4" data-path="setting-up.html"><a href="setting-up.html#source"><i class="fa fa-check"></i><b>2.3.4</b> Source</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="setting-up.html"><a href="setting-up.html#r-markdown"><i class="fa fa-check"></i><b>2.4</b> R Markdown</a></li>
+<li class="chapter" data-level="2.5" data-path="setting-up.html"><a href="setting-up.html#comments"><i class="fa fa-check"></i><b>2.5</b> Comments</a></li>
+<li class="chapter" data-level="2.6" data-path="setting-up.html"><a href="setting-up.html#getting-the-files"><i class="fa fa-check"></i><b>2.6</b> Getting the files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base-R</a><ul>
+<li class="chapter" data-level="3.1" data-path="base-r.html"><a href="base-r.html#objects-and-functions"><i class="fa fa-check"></i><b>3.1</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="base-r.html"><a href="base-r.html#naming-objects"><i class="fa fa-check"></i><b>3.1.1</b> Naming objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="base-r.html"><a href="base-r.html#errors"><i class="fa fa-check"></i><b>3.1.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="base-r.html"><a href="base-r.html#functions"><i class="fa fa-check"></i><b>3.2</b> Functions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="base-r.html"><a href="base-r.html#help"><i class="fa fa-check"></i><b>3.2.1</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="base-r.html"><a href="base-r.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="base-r.html"><a href="base-r.html#quotation-marks"><i class="fa fa-check"></i><b>3.4</b> Quotation Marks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#welcome-to-ggplot"><i class="fa fa-check"></i><b>4.1</b> Welcome to ggplot</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#ggplot2_setting_up"><i class="fa fa-check"></i><b>4.2</b> Setting up</a></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#description-of-the-pulse-of-the-nation-dataset"><i class="fa fa-check"></i><b>4.3</b> Description of the “Pulse of the Nation” Dataset</a></li>
+<li class="chapter" data-level="4.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#main-components-of-ggplot2"><i class="fa fa-check"></i><b>4.4</b> Main components of ggplot2</a></li>
+<li class="chapter" data-level="4.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#first-ggplot2-graph"><i class="fa fa-check"></i><b>4.5</b> First ggplot2 graph</a></li>
+<li class="chapter" data-level="4.6" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#adding-colour"><i class="fa fa-check"></i><b>4.6</b> Adding colour</a></li>
+<li class="chapter" data-level="4.7" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms"><i class="fa fa-check"></i><b>4.7</b> More Geoms</a></li>
+<li class="chapter" data-level="4.8" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>4.8</b> Scales</a></li>
+<li class="chapter" data-level="4.9" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#layering"><i class="fa fa-check"></i><b>4.9</b> Layering</a></li>
+<li class="chapter" data-level="4.10" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms-1"><i class="fa fa-check"></i><b>4.10</b> More geoms</a></li>
+<li class="chapter" data-level="4.11" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#comparing-attractiveness-across-gender"><i class="fa fa-check"></i><b>4.11</b> Comparing attractiveness across gender</a></li>
+<li class="chapter" data-level="4.12" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#splitting-plots-using-facets"><i class="fa fa-check"></i><b>4.12</b> Splitting plots using Facets</a></li>
+<li class="chapter" data-level="4.13" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-and-labels"><i class="fa fa-check"></i><b>4.13</b> Themes and labels</a></li>
+<li class="chapter" data-level="4.14" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#recap-exercises"><i class="fa fa-check"></i><b>4.14</b> Recap Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#set-up-for-session"><i class="fa fa-check"></i><b>5.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#description-of-datasets-being-used"><i class="fa fa-check"></i><b>5.2</b> Description of Datasets Being Used</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slicing-filter-and-select"><i class="fa fa-check"></i><b>5.3</b> Slicing, Filter and Select</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#creating-new-dataframe"><i class="fa fa-check"></i><b>5.4</b> Creating new dataframe</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#column-transformations"><i class="fa fa-check"></i><b>5.5</b> Column Transformations</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#more-ways-to-filter"><i class="fa fa-check"></i><b>5.6</b> More ways to filter</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregationgrouping"><i class="fa fa-check"></i><b>5.7</b> Aggregation/Grouping</a></li>
+<li class="chapter" data-level="5.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.8</b> Pipes</a></li>
+<li class="chapter" data-level="5.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#the-summarise-function"><i class="fa fa-check"></i><b>5.9</b> The summarise() function</a></li>
+<li class="chapter" data-level="5.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging"><i class="fa fa-check"></i><b>5.10</b> Arranging</a></li>
+<li class="chapter" data-level="5.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summary"><i class="fa fa-check"></i><b>5.11</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>6</b> Importing Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="importing-data.html"><a href="importing-data.html#placeholder"><i class="fa fa-check"></i><b>6.1</b> Placeholder</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data.html"><a href="importing-data.html#introduction-to-ukireland-dataset"><i class="fa fa-check"></i><b>6.2</b> Introduction to UKIreland dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="importing-data.html"><a href="importing-data.html#reading-in-data-from-csv"><i class="fa fa-check"></i><b>6.3</b> Reading in data from CSV</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data.html"><a href="importing-data.html#reading-in-from-excel"><i class="fa fa-check"></i><b>6.4</b> Reading in from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>7</b> Merging datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="merging-datasets.html"><a href="merging-datasets.html#set-up-for-session-1"><i class="fa fa-check"></i><b>7.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="7.2" data-path="merging-datasets.html"><a href="merging-datasets.html#binding"><i class="fa fa-check"></i><b>7.2</b> Binding</a></li>
+<li class="chapter" data-level="7.3" data-path="merging-datasets.html"><a href="merging-datasets.html#introducing-merging"><i class="fa fa-check"></i><b>7.3</b> Introducing merging</a></li>
+<li class="chapter" data-level="7.4" data-path="merging-datasets.html"><a href="merging-datasets.html#applying-merging"><i class="fa fa-check"></i><b>7.4</b> Applying merging</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="merging-datasets.html"><a href="merging-datasets.html#piping-into-ggplot-some-new-geoms"><i class="fa fa-check"></i><b>7.4.1</b> Piping into ggplot (+ some new geoms)</a></li>
+<li class="chapter" data-level="7.4.2" data-path="merging-datasets.html"><a href="merging-datasets.html#challenging-merging"><i class="fa fa-check"></i><b>7.4.2</b> Challenging Merging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reshaping-data.html"><a href="reshaping-data.html"><i class="fa fa-check"></i><b>8</b> Reshaping Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="reshaping-data.html"><a href="reshaping-data.html#going-long"><i class="fa fa-check"></i><b>8.1</b> Going Long</a></li>
+<li class="chapter" data-level="8.2" data-path="reshaping-data.html"><a href="reshaping-data.html#going-wide"><i class="fa fa-check"></i><b>8.2</b> Going wide</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="reshaping-data.html"><a href="reshaping-data.html#exercises"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>9</b> Modelling</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelling.html"><a href="modelling.html#set-up-for-session-2"><i class="fa fa-check"></i><b>9.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="9.2" data-path="modelling.html"><a href="modelling.html#exploring-data"><i class="fa fa-check"></i><b>9.2</b> Exploring Data</a></li>
+<li class="chapter" data-level="9.3" data-path="modelling.html"><a href="modelling.html#fitting-model"><i class="fa fa-check"></i><b>9.3</b> Fitting Model</a></li>
+<li class="chapter" data-level="9.4" data-path="modelling.html"><a href="modelling.html#checking-model"><i class="fa fa-check"></i><b>9.4</b> Checking Model</a></li>
+<li class="chapter" data-level="9.5" data-path="modelling.html"><a href="modelling.html#updating-model"><i class="fa fa-check"></i><b>9.5</b> Updating Model</a></li>
+<li class="chapter" data-level="9.6" data-path="modelling.html"><a href="modelling.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>9.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="9.7" data-path="modelling.html"><a href="modelling.html#extending-to-multiple-regression"><i class="fa fa-check"></i><b>9.7</b> Extending to multiple regression:</a></li>
+<li class="chapter" data-level="9.8" data-path="modelling.html"><a href="modelling.html#exercise"><i class="fa fa-check"></i><b>9.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>10</b> Simulation</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulation.html"><a href="simulation.html#description-of-the-session-goal"><i class="fa fa-check"></i><b>10.1</b> Description of the session goal</a></li>
+<li class="chapter" data-level="10.2" data-path="simulation.html"><a href="simulation.html#find-and-install-r-packages"><i class="fa fa-check"></i><b>10.2</b> Find and install R packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simulation.html"><a href="simulation.html#sampling-from-data-or-known-distributions"><i class="fa fa-check"></i><b>10.3</b> Sampling from data or known distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="simulation.html"><a href="simulation.html#sampling-from-data"><i class="fa fa-check"></i><b>10.4</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.5" data-path="simulation.html"><a href="simulation.html#generating-random-numbers-from-distributions"><i class="fa fa-check"></i><b>10.5</b> Generating random numbers from distributions</a></li>
+<li class="chapter" data-level="10.6" data-path="simulation.html"><a href="simulation.html#reproducing-samples"><i class="fa fa-check"></i><b>10.6</b> Reproducing samples</a></li>
+<li class="chapter" data-level="10.7" data-path="simulation.html"><a href="simulation.html#sampling-from-data-1"><i class="fa fa-check"></i><b>10.7</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.8" data-path="simulation.html"><a href="simulation.html#making-functions"><i class="fa fa-check"></i><b>10.8</b> Making functions</a></li>
+<li class="chapter" data-level="10.9" data-path="simulation.html"><a href="simulation.html#when-to-write-your-own-functions"><i class="fa fa-check"></i><b>10.9</b> When to write your own functions</a></li>
+<li class="chapter" data-level="10.10" data-path="simulation.html"><a href="simulation.html#iterations-loops"><i class="fa fa-check"></i><b>10.10</b> Iterations (loops)</a></li>
+<li class="chapter" data-level="10.11" data-path="simulation.html"><a href="simulation.html#puttng-it-all-together"><i class="fa fa-check"></i><b>10.11</b> Puttng it all together</a></li>
+<li class="chapter" data-level="10.12" data-path="simulation.html"><a href="simulation.html#simulation-of-the-best-strategy"><i class="fa fa-check"></i><b>10.12</b> Simulation of the best strategy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://stats4sd.org/" target="blank">By Statistics for Sustianable Development</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="merging-datasets" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Merging datasets</h1>
+<div id="set-up-for-session-1" class="section level2">
+<h2><span class="header-section-number">7.1</span> Set Up for Session</h2>
+<p>In this session, we are going to use the following packages; <code>dplyr, ggplot2, openxlsx, tidyr, plotly</code>. If you get an error saying <code>there is no package called _____</code>, install the package as covered in the first tutorial.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(openxlsx)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(plotly)</code></pre>
+<p>We have used the following datasets in this tutorial. Import them as covered in the previous tutorial <code>UKIreland.csv, UKIreland.xlsx, UN_LivestockData.csv, WorldBankData.csv</code></p>
+</div>
+<div id="binding" class="section level2">
+<h2><span class="header-section-number">7.2</span> Binding</h2>
+<p>After sucessfully loading the datasets, there should be seperate data frames of the UK data and Ireland data that we used in the previous tutorial. Ideally we would like to combine these together into a single data frame.</p>
+<p>In this case the two data frames have the same structure; the columns are the same, the column names are the same and there are the same number of rows (one for each year).</p>
+<p>We can use the <code>rbind()</code> function to merge the data frames together. <code>rbind()</code> attatches the rows of the second data frame below the first data frame.</p>
+<pre class="sourceCode r"><code class="sourceCode r">UKIreland&lt;-<span class="kw">rbind</span>(UK,Ireland)</code></pre>
+<p><code>rbind()</code> only works because the UK data has the same columns as the Ireland data. For example, we will get an error if we had calculated a new column in one dataset but not in the other:</p>
+<pre class="sourceCode r"><code class="sourceCode r">UK2 &lt;-<span class="st"> </span><span class="kw">mutate</span>(UK,<span class="dt">pop_mill=</span>population<span class="op">/</span><span class="dv">1000000</span>)
+
+<span class="kw">rbind</span>(UK2,Ireland)</code></pre>
+<pre><code>## Error in rbind(deparse.level, ...): numbers of columns of arguments do not match</code></pre>
+<p>There is also a function called <code>cbind</code>. This binds the columns together.</p>
+<pre class="sourceCode r"><code class="sourceCode r">UKIreland2&lt;-<span class="kw">cbind</span>(UK,Ireland)</code></pre>
+<p><code>cbind()</code> will only work if we have the same number of rows in each data. cbind also produces a slightly confusing dataset - we now have two sets columns called “population”, “country” and so on; this makes it very difficult to work with!</p>
+<p><code>rbind()</code> is used often but <code>cbind()</code> is not since to be useful the two datasets need to have the same number of rows with each row describing the same thing. There are more functions to allow more flexible types of merging of datasets.</p>
+</div>
+<div id="introducing-merging" class="section level2">
+<h2><span class="header-section-number">7.3</span> Introducing merging</h2>
+<p><code>dplyr</code> has a number of clever functions for merging data.</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Join function</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>full_join()</code></td>
+<td>merges two datasets and keeping all observations from both datasets</td>
+</tr>
+<tr class="even">
+<td><code>inner_join()</code></td>
+<td>merges two datasets and only keeping the matching observations</td>
+</tr>
+<tr class="odd">
+<td><code>left_join()</code></td>
+<td>merges two datasets and keeping all observations from the first (“left”) data set but only the observations that match from the second (“right”) data set</td>
+</tr>
+<tr class="even">
+<td><code>right_join()</code></td>
+<td>merges two datasets and keeping all observations from the second (“right”) data set but only the observations that match from the first (“left”) data set</td>
+</tr>
+<tr class="odd">
+<td><code>anti_join()</code></td>
+<td>identifying rows present in the first (“left”) dataset which do not have a match in the second (“right”) dataset.</td>
+</tr>
+</tbody>
+</table>
+<p>We will work through these sequentially. The function for merging all the data is full_join. The key identifier column between UK and Ireland would be the “date” column.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(UK,Ireland,<span class="dt">by=</span><span class="st">&quot;date&quot;</span>)</code></pre>
+<pre><code>##         country.x date    gdp.x population.x unemployment.x capital.x
+## 1  United Kingdom 2000 27982.36     58892514       5.450000    London
+## 2  United Kingdom 2001 27427.59     59119673       5.083333    London
+## 3  United Kingdom 2002 29785.99     59370479       5.175000    London
+## 4  United Kingdom 2003 34173.98     59647577       5.008333    London
+## 5  United Kingdom 2004 39983.98     59987905       4.750000    London
+## 6  United Kingdom 2005 41732.64     60401206       4.841667    London
+## 7  United Kingdom 2006 44252.32     60846820       5.416667    London
+## 8  United Kingdom 2007 50134.32     61322463       5.333333    London
+## 9  United Kingdom 2008 46767.59     61806995       5.708333    London
+## 10 United Kingdom 2009 38262.18     62276270       7.608333    London
+## 11 United Kingdom 2010 38893.02     62766365       7.891667    London
+## 12 United Kingdom 2011 41412.35     63258918       8.091667    London
+## 13 United Kingdom 2012 41790.78     63700300       7.991667    London
+## 14 United Kingdom 2013 42724.07     64128226       7.591667    London
+## 15 United Kingdom 2014 46783.47     64613160       6.200000    London
+## 16 United Kingdom 2015 44305.55     65128861       5.375000    London
+## 17 United Kingdom 2016 40341.41     65637239       4.900000    London
+##    country.y    gdp.y population.y unemployment.y capital.y
+## 1    Ireland 26241.51      3805174       4.266667    Dublin
+## 2    Ireland 28227.28      3866243       3.925000    Dublin
+## 3    Ireland 32539.95      3931947       4.491667    Dublin
+## 4    Ireland 41107.03      3996521       4.616667    Dublin
+## 5    Ireland 47630.93      4070262       4.491667    Dublin
+## 6    Ireland 50878.64      4159914       4.400000    Dublin
+## 7    Ireland 54306.91      4273591       4.525000    Dublin
+## 8    Ireland 61359.64      4398942       4.691667    Dublin
+## 9    Ireland 61257.90      4489544       6.433333    Dublin
+## 10   Ireland 52104.04      4535375      12.050000    Dublin
+## 11   Ireland 48671.89      4560155      13.908333    Dublin
+## 12   Ireland 52224.01      4576794      14.675000    Dublin
+## 13   Ireland 49177.44      4586897      14.725000    Dublin
+## 14   Ireland 52060.47      4598294      13.091667    Dublin
+## 15   Ireland 55899.16      4617225      11.316667    Dublin
+## 16   Ireland 62139.67      4676835       9.458333    Dublin
+## 17   Ireland 63861.92      4773095       7.908333    Dublin</code></pre>
+<p>Notice that instead of duplicated names for the columns, we now have a suffix .x and .y. It might be useful to have a more informative suffix so that we don’t have to constantly remember which country is x and which country is y.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(UK,Ireland,<span class="dt">by=</span><span class="st">&quot;date&quot;</span>,<span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_UK&quot;</span>,<span class="st">&quot;_IRE&quot;</span>))</code></pre>
+<p><strong>QUESTION: In the previous chunk what we would expect to see if we were to replace full_join() with inner_join()?</strong></p>
+</div>
+<div id="applying-merging" class="section level2">
+<h2><span class="header-section-number">7.4</span> Applying merging</h2>
+<div id="piping-into-ggplot-some-new-geoms" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Piping into ggplot (+ some new geoms)</h3>
+<p>We could now make a plot of GDP in Ireland against GDP in UK. We can pipe data into a graph in a similar way to piping data commands that we saw yesterday.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(UK,Ireland,<span class="dt">by=</span><span class="st">&quot;date&quot;</span>,<span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_UK&quot;</span>,<span class="st">&quot;_IRE&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y=</span>gdp_UK,<span class="dt">x=</span>gdp_IRE)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>Remember that once we have started the ggplot() we use the + to link together the components of the graph. The %&gt;% is used to make modifications to the data.</p>
+<p>We can also assign our plots to be named objects, similar to how we have named data frames so far. This can be a good way of sequentially building up a plot. But to actually see the plot we need to repeat back the name.</p>
+<pre class="sourceCode r"><code class="sourceCode r">plot1&lt;-<span class="kw">full_join</span>(UK,Ireland,<span class="dt">by=</span><span class="st">&quot;date&quot;</span>,<span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_UK&quot;</span>,<span class="st">&quot;_IRE&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y=</span>gdp_UK,<span class="dt">x=</span>gdp_IRE)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()
+
+plot1</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>Maybe we want to show the time dimension on this graph in some way, as each point represents a year. Yesterday we used geom_line() to make line graphs but in this case it may not be so useful. geom_line joins up the points from left to right. But that may not be the same order as it is from year to year. So instead we can use the function geom_path, which joins the points in data order. If we want to be sure that the data order is sensible, we can make sure we arrange it by date first.</p>
+<pre class="sourceCode r"><code class="sourceCode r">plot1<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_path</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p>To show this even clearer we could label the points. geom_text() adds text to the graph. and the text column needs to be assigned to an extra aesthetic called “label”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">plot1<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_path</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>date))</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><strong>QUESTION: </strong><br />
+Modify the previous code to produce the same plot but;
+1. colour the text labels red
+2. place the labels above the points instead of on top of the points;
+3. make the points bigger;
+4. use a dotted line instead of a full line.
+5. You might need to look into the help menus for some of these geoms to find the appropriate options, or remember the (probably even more useful) R Graphics Cookbook: <a href="http://www.cookbook-r.com/Graphs/" class="uri">http://www.cookbook-r.com/Graphs/</a></p>
+<pre class="sourceCode r"><code class="sourceCode r">plot1<span class="op">+</span>
+<span class="st">  </span>???</code></pre>
+<p>Another way of helping identify which point is which would be to use an interactive graph using the <code>plotly</code> library. This is a really easy way of making a really nice interactive graph.</p>
+<p>To use plotly you need to assign your plot to an object, and then run ggplotly() around that object. Any information you want to be available in your interactive plot needs to be mapped to an aesthetic in the ggplot statement.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplotly</span>(plot1)</code></pre>
+<p>But these don’t have to be real geoms, you can use any name and then this will be carried through to the interactive plot. E.g. - this code (suprisingly) works:</p>
+<pre class="sourceCode r"><code class="sourceCode r">plot2&lt;-<span class="kw">full_join</span>(UK,Ireland,<span class="dt">by=</span><span class="st">&quot;date&quot;</span>,<span class="dt">suffix=</span><span class="kw">c</span>(<span class="st">&quot;_UK&quot;</span>,<span class="st">&quot;_IRE&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(date) <span class="op">%&gt;%</span>
+<span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y=</span>gdp_UK,<span class="dt">x=</span>gdp_IRE,<span class="dt">sgndskjgfbsljk=</span>date)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_path</span>()
+
+<span class="kw">ggplotly</span>(plot2)</code></pre>
+</div>
+<div id="challenging-merging" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Challenging Merging</h3>
+<p>Let’s bring in another dataset, from a different source, to do some more interesting, and difficult, merging tasks.</p>
+<p>The Livestock data contains data from a similar period, for all countries in the world, on the number of different livestock units within that country.</p>
+<p>Click on the dataset in the environment window to take a look at the data.</p>
+<p>Let’s try and merge this with the combined data from UK &amp; Ireland (UKIreland).</p>
+<p><strong>QUESTION: Take a close look at these two datasets. Can you see any possible issues with trying to merge these datasets together?</strong></p>
+<p>These issues can be resolved by having
+i) multiple key join fields, brought together using c()
+ii) changing the specification slightly - insteady of by=“key_column_name” we can have <code>by=c("key_column_name_from_1st_data"="key_column_name_from_2nd_data")</code>.</p>
+<p>Before running the code try to answer the following question:</p>
+<p><strong>QUESTION: How many rows and columns would we expect to see in the result of each of these join statement. HINT: Check the Environment tab for lthe size of the data frames.</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">full_join</span>(UKIreland,Livestock,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;country&quot;</span>=<span class="st">&quot;Area&quot;</span>,<span class="st">&quot;date&quot;</span>=<span class="st">&quot;Year&quot;</span>))
+
+<span class="kw">inner_join</span>(UKIreland,Livestock,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;country&quot;</span>=<span class="st">&quot;Area&quot;</span>,<span class="st">&quot;date&quot;</span>=<span class="st">&quot;Year&quot;</span>))
+
+<span class="kw">anti_join</span>(UKIreland,Livestock,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;country&quot;</span>=<span class="st">&quot;Area&quot;</span>,<span class="st">&quot;date&quot;</span>=<span class="st">&quot;Year&quot;</span>))
+
+<span class="kw">anti_join</span>(Livestock,UKIreland,<span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;Area&quot;</span>=<span class="st">&quot;country&quot;</span>,<span class="st">&quot;Year&quot;</span>=<span class="st">&quot;date&quot;</span>))</code></pre>
+<p><strong>QUESTION: We are interested in comparing the livestock populations of Ireland and the UK. Which of these options would be the most useful of these joins to use for further analysis? Assign the most useful join to an object called UKIrelandLivestock</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">UKIrelandLivestock&lt;-</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="importing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reshaping-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Online_R_Course.pdf", "Online_R_Course.epub"],
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Graphics with ggplot2 | Online R Course</title>
+  <meta name="description" content="Chapter 4 Graphics with ggplot2 | Online R Course" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Graphics with ggplot2 | Online R Course" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Graphics with ggplot2 | Online R Course" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="base-r.html">
+<link rel="next" href="data-manipulation-with-dplyr.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome!</a></li>
+<li class="chapter" data-level="2" data-path="setting-up.html"><a href="setting-up.html"><i class="fa fa-check"></i><b>2</b> Setting up</a><ul>
+<li class="chapter" data-level="2.1" data-path="setting-up.html"><a href="setting-up.html#about-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> About R and RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="setting-up.html"><a href="setting-up.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="setting-up.html"><a href="setting-up.html#get-the-data"><i class="fa fa-check"></i><b>2.2</b> Get the data</a></li>
+<li class="chapter" data-level="2.3" data-path="setting-up.html"><a href="setting-up.html#navigating-rstudio"><i class="fa fa-check"></i><b>2.3</b> Navigating RStudio</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="setting-up.html"><a href="setting-up.html#console"><i class="fa fa-check"></i><b>2.3.1</b> Console</a></li>
+<li class="chapter" data-level="2.3.2" data-path="setting-up.html"><a href="setting-up.html#environment"><i class="fa fa-check"></i><b>2.3.2</b> Environment</a></li>
+<li class="chapter" data-level="2.3.3" data-path="setting-up.html"><a href="setting-up.html#packages-help"><i class="fa fa-check"></i><b>2.3.3</b> Packages, Help</a></li>
+<li class="chapter" data-level="2.3.4" data-path="setting-up.html"><a href="setting-up.html#source"><i class="fa fa-check"></i><b>2.3.4</b> Source</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="setting-up.html"><a href="setting-up.html#r-markdown"><i class="fa fa-check"></i><b>2.4</b> R Markdown</a></li>
+<li class="chapter" data-level="2.5" data-path="setting-up.html"><a href="setting-up.html#comments"><i class="fa fa-check"></i><b>2.5</b> Comments</a></li>
+<li class="chapter" data-level="2.6" data-path="setting-up.html"><a href="setting-up.html#getting-the-files"><i class="fa fa-check"></i><b>2.6</b> Getting the files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="base-r.html"><a href="base-r.html"><i class="fa fa-check"></i><b>3</b> Base-R</a><ul>
+<li class="chapter" data-level="3.1" data-path="base-r.html"><a href="base-r.html#objects-and-functions"><i class="fa fa-check"></i><b>3.1</b> Objects and functions</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="base-r.html"><a href="base-r.html#naming-objects"><i class="fa fa-check"></i><b>3.1.1</b> Naming objects</a></li>
+<li class="chapter" data-level="3.1.2" data-path="base-r.html"><a href="base-r.html#errors"><i class="fa fa-check"></i><b>3.1.2</b> Errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="base-r.html"><a href="base-r.html#functions"><i class="fa fa-check"></i><b>3.2</b> Functions</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="base-r.html"><a href="base-r.html#help"><i class="fa fa-check"></i><b>3.2.1</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="base-r.html"><a href="base-r.html#packages"><i class="fa fa-check"></i><b>3.3</b> Packages</a></li>
+<li class="chapter" data-level="3.4" data-path="base-r.html"><a href="base-r.html#quotation-marks"><i class="fa fa-check"></i><b>3.4</b> Quotation Marks</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html"><i class="fa fa-check"></i><b>4</b> Graphics with ggplot2</a><ul>
+<li class="chapter" data-level="4.1" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#welcome-to-ggplot"><i class="fa fa-check"></i><b>4.1</b> Welcome to ggplot</a></li>
+<li class="chapter" data-level="4.2" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#ggplot2_setting_up"><i class="fa fa-check"></i><b>4.2</b> Setting up</a></li>
+<li class="chapter" data-level="4.3" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#description-of-the-pulse-of-the-nation-dataset"><i class="fa fa-check"></i><b>4.3</b> Description of the “Pulse of the Nation” Dataset</a></li>
+<li class="chapter" data-level="4.4" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#main-components-of-ggplot2"><i class="fa fa-check"></i><b>4.4</b> Main components of ggplot2</a></li>
+<li class="chapter" data-level="4.5" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#first-ggplot2-graph"><i class="fa fa-check"></i><b>4.5</b> First ggplot2 graph</a></li>
+<li class="chapter" data-level="4.6" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#adding-colour"><i class="fa fa-check"></i><b>4.6</b> Adding colour</a></li>
+<li class="chapter" data-level="4.7" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms"><i class="fa fa-check"></i><b>4.7</b> More Geoms</a></li>
+<li class="chapter" data-level="4.8" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#scales"><i class="fa fa-check"></i><b>4.8</b> Scales</a></li>
+<li class="chapter" data-level="4.9" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#layering"><i class="fa fa-check"></i><b>4.9</b> Layering</a></li>
+<li class="chapter" data-level="4.10" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#more-geoms-1"><i class="fa fa-check"></i><b>4.10</b> More geoms</a></li>
+<li class="chapter" data-level="4.11" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#comparing-attractiveness-across-gender"><i class="fa fa-check"></i><b>4.11</b> Comparing attractiveness across gender</a></li>
+<li class="chapter" data-level="4.12" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#splitting-plots-using-facets"><i class="fa fa-check"></i><b>4.12</b> Splitting plots using Facets</a></li>
+<li class="chapter" data-level="4.13" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#themes-and-labels"><i class="fa fa-check"></i><b>4.13</b> Themes and labels</a></li>
+<li class="chapter" data-level="4.14" data-path="graphics-with-ggplot2.html"><a href="graphics-with-ggplot2.html#recap-exercises"><i class="fa fa-check"></i><b>4.14</b> Recap Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with dplyr</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#set-up-for-session"><i class="fa fa-check"></i><b>5.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="5.2" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#description-of-datasets-being-used"><i class="fa fa-check"></i><b>5.2</b> Description of Datasets Being Used</a></li>
+<li class="chapter" data-level="5.3" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#slicing-filter-and-select"><i class="fa fa-check"></i><b>5.3</b> Slicing, Filter and Select</a></li>
+<li class="chapter" data-level="5.4" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#creating-new-dataframe"><i class="fa fa-check"></i><b>5.4</b> Creating new dataframe</a></li>
+<li class="chapter" data-level="5.5" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#column-transformations"><i class="fa fa-check"></i><b>5.5</b> Column Transformations</a></li>
+<li class="chapter" data-level="5.6" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#more-ways-to-filter"><i class="fa fa-check"></i><b>5.6</b> More ways to filter</a></li>
+<li class="chapter" data-level="5.7" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#aggregationgrouping"><i class="fa fa-check"></i><b>5.7</b> Aggregation/Grouping</a></li>
+<li class="chapter" data-level="5.8" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#pipes"><i class="fa fa-check"></i><b>5.8</b> Pipes</a></li>
+<li class="chapter" data-level="5.9" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#the-summarise-function"><i class="fa fa-check"></i><b>5.9</b> The summarise() function</a></li>
+<li class="chapter" data-level="5.10" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#arranging"><i class="fa fa-check"></i><b>5.10</b> Arranging</a></li>
+<li class="chapter" data-level="5.11" data-path="data-manipulation-with-dplyr.html"><a href="data-manipulation-with-dplyr.html#summary"><i class="fa fa-check"></i><b>5.11</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>6</b> Importing Data</a><ul>
+<li class="chapter" data-level="6.1" data-path="importing-data.html"><a href="importing-data.html#placeholder"><i class="fa fa-check"></i><b>6.1</b> Placeholder</a></li>
+<li class="chapter" data-level="6.2" data-path="importing-data.html"><a href="importing-data.html#introduction-to-ukireland-dataset"><i class="fa fa-check"></i><b>6.2</b> Introduction to UKIreland dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="importing-data.html"><a href="importing-data.html#reading-in-data-from-csv"><i class="fa fa-check"></i><b>6.3</b> Reading in data from CSV</a></li>
+<li class="chapter" data-level="6.4" data-path="importing-data.html"><a href="importing-data.html#reading-in-from-excel"><i class="fa fa-check"></i><b>6.4</b> Reading in from Excel</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="merging-datasets.html"><a href="merging-datasets.html"><i class="fa fa-check"></i><b>7</b> Merging datasets</a><ul>
+<li class="chapter" data-level="7.1" data-path="merging-datasets.html"><a href="merging-datasets.html#set-up-for-session-1"><i class="fa fa-check"></i><b>7.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="7.2" data-path="merging-datasets.html"><a href="merging-datasets.html#binding"><i class="fa fa-check"></i><b>7.2</b> Binding</a></li>
+<li class="chapter" data-level="7.3" data-path="merging-datasets.html"><a href="merging-datasets.html#introducing-merging"><i class="fa fa-check"></i><b>7.3</b> Introducing merging</a></li>
+<li class="chapter" data-level="7.4" data-path="merging-datasets.html"><a href="merging-datasets.html#applying-merging"><i class="fa fa-check"></i><b>7.4</b> Applying merging</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="merging-datasets.html"><a href="merging-datasets.html#piping-into-ggplot-some-new-geoms"><i class="fa fa-check"></i><b>7.4.1</b> Piping into ggplot (+ some new geoms)</a></li>
+<li class="chapter" data-level="7.4.2" data-path="merging-datasets.html"><a href="merging-datasets.html#challenging-merging"><i class="fa fa-check"></i><b>7.4.2</b> Challenging Merging</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reshaping-data.html"><a href="reshaping-data.html"><i class="fa fa-check"></i><b>8</b> Reshaping Data</a><ul>
+<li class="chapter" data-level="8.1" data-path="reshaping-data.html"><a href="reshaping-data.html#going-long"><i class="fa fa-check"></i><b>8.1</b> Going Long</a></li>
+<li class="chapter" data-level="8.2" data-path="reshaping-data.html"><a href="reshaping-data.html#going-wide"><i class="fa fa-check"></i><b>8.2</b> Going wide</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="reshaping-data.html"><a href="reshaping-data.html#exercises"><i class="fa fa-check"></i><b>8.2.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="modelling.html"><a href="modelling.html"><i class="fa fa-check"></i><b>9</b> Modelling</a><ul>
+<li class="chapter" data-level="9.1" data-path="modelling.html"><a href="modelling.html#set-up-for-session-2"><i class="fa fa-check"></i><b>9.1</b> Set Up for Session</a></li>
+<li class="chapter" data-level="9.2" data-path="modelling.html"><a href="modelling.html#exploring-data"><i class="fa fa-check"></i><b>9.2</b> Exploring Data</a></li>
+<li class="chapter" data-level="9.3" data-path="modelling.html"><a href="modelling.html#fitting-model"><i class="fa fa-check"></i><b>9.3</b> Fitting Model</a></li>
+<li class="chapter" data-level="9.4" data-path="modelling.html"><a href="modelling.html#checking-model"><i class="fa fa-check"></i><b>9.4</b> Checking Model</a></li>
+<li class="chapter" data-level="9.5" data-path="modelling.html"><a href="modelling.html#updating-model"><i class="fa fa-check"></i><b>9.5</b> Updating Model</a></li>
+<li class="chapter" data-level="9.6" data-path="modelling.html"><a href="modelling.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>9.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="9.7" data-path="modelling.html"><a href="modelling.html#extending-to-multiple-regression"><i class="fa fa-check"></i><b>9.7</b> Extending to multiple regression:</a></li>
+<li class="chapter" data-level="9.8" data-path="modelling.html"><a href="modelling.html#exercise"><i class="fa fa-check"></i><b>9.8</b> Exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>10</b> Simulation</a><ul>
+<li class="chapter" data-level="10.1" data-path="simulation.html"><a href="simulation.html#description-of-the-session-goal"><i class="fa fa-check"></i><b>10.1</b> Description of the session goal</a></li>
+<li class="chapter" data-level="10.2" data-path="simulation.html"><a href="simulation.html#find-and-install-r-packages"><i class="fa fa-check"></i><b>10.2</b> Find and install R packages</a></li>
+<li class="chapter" data-level="10.3" data-path="simulation.html"><a href="simulation.html#sampling-from-data-or-known-distributions"><i class="fa fa-check"></i><b>10.3</b> Sampling from data or known distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="simulation.html"><a href="simulation.html#sampling-from-data"><i class="fa fa-check"></i><b>10.4</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.5" data-path="simulation.html"><a href="simulation.html#generating-random-numbers-from-distributions"><i class="fa fa-check"></i><b>10.5</b> Generating random numbers from distributions</a></li>
+<li class="chapter" data-level="10.6" data-path="simulation.html"><a href="simulation.html#reproducing-samples"><i class="fa fa-check"></i><b>10.6</b> Reproducing samples</a></li>
+<li class="chapter" data-level="10.7" data-path="simulation.html"><a href="simulation.html#sampling-from-data-1"><i class="fa fa-check"></i><b>10.7</b> Sampling from data</a></li>
+<li class="chapter" data-level="10.8" data-path="simulation.html"><a href="simulation.html#making-functions"><i class="fa fa-check"></i><b>10.8</b> Making functions</a></li>
+<li class="chapter" data-level="10.9" data-path="simulation.html"><a href="simulation.html#when-to-write-your-own-functions"><i class="fa fa-check"></i><b>10.9</b> When to write your own functions</a></li>
+<li class="chapter" data-level="10.10" data-path="simulation.html"><a href="simulation.html#iterations-loops"><i class="fa fa-check"></i><b>10.10</b> Iterations (loops)</a></li>
+<li class="chapter" data-level="10.11" data-path="simulation.html"><a href="simulation.html#puttng-it-all-together"><i class="fa fa-check"></i><b>10.11</b> Puttng it all together</a></li>
+<li class="chapter" data-level="10.12" data-path="simulation.html"><a href="simulation.html#simulation-of-the-best-strategy"><i class="fa fa-check"></i><b>10.12</b> Simulation of the best strategy</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://stats4sd.org/" target="blank">By Statistics for Sustianable Development</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Online R Course</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphics-with-ggplot2" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Graphics with ggplot2</h1>
+<div id="welcome-to-ggplot" class="section level2">
+<h2><span class="header-section-number">4.1</span> Welcome to ggplot</h2>
+<p>Graphs play an important part of any data analysis in understanding your data.</p>
+<p>As we’ve mentioned in the previous chapter, <code>base-R</code> can be extended using packages and the particular package we’ll be using in this tutorial will be <code>ggplot2</code> <span class="citation">(Wickham, Chang, et al. <a href="#ref-R-ggplot2">2019</a>)</span>.</p>
+<p>There are lots of of different systems for producing graphs in R. We are going to focus on the <code>ggplot2</code> package. The syntax can look scary at first, but once you understand the basic building blocks, you will be able to produce complex graphs very easily.</p>
+<p>Comparing <code>base-R</code> with <code>ggplot2</code></p>
+<p><strong>baseR</strong></p>
+<ul>
+<li>Simple intuitive syntax for basic plot<br />
+</li>
+<li>Pretty ugly basic plot<br />
+</li>
+<li>Inconsistent syntax for different plot types<br />
+</li>
+<li>Complicated syntax for customisation</li>
+</ul>
+<p><strong>ggplot2</strong></p>
+<ul>
+<li>Unusual syntax for basic plot<br />
+</li>
+<li>Pretty looking basic plot<br />
+</li>
+<li>Consistent syntax for different plot types<br />
+</li>
+<li>Consistent syntax for customisation</li>
+</ul>
+<p>1 against 3. ggplot2 wins.</p>
+</div>
+<div id="ggplot2_setting_up" class="section level2">
+<h2><span class="header-section-number">4.2</span> Setting up</h2>
+<p>Assuming you have followed the previous chapter, particularly from <a href="setting-up.html#installing-r-and-rstudio">2.1.1</a>, at this stage you have installed <code>R</code>, RStudio, familarised yourself with the key panels and then installed key packages including <code>ggplot2</code>.</p>
+<p>This means you simply need to load <code>ggplot2</code> into your current session by simply running the command below.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre>
+<p>To plot our data, we first need data. Luckily we have some prepared for you.</p>
+<p>The simpliest way for this tutorial is to look at the <code>Environment</code> panel in the top right of RStudio and press the folder with the green arrow. Navigate to the Data folder you downloaded from GitHub (Link Here). Double click on <code>03 Pulse.RData</code>. In a later chapter, we will talk about how to import other formats.</p>
+</div>
+<div id="description-of-the-pulse-of-the-nation-dataset" class="section level2">
+<h2><span class="header-section-number">4.3</span> Description of the “Pulse of the Nation” Dataset</h2>
+<p>Before we proceed with any analysis, and even outside this tutorial, it is important to understand your dataset.</p>
+<p>You can view the dataset in RStudio by single clicking the name in the Environment tab.</p>
+<p>The “Pulse” dataset is an extract from the monthly survey “Pulse of the Nation” made by Cards Against Humanity <span class="citation">(Cards Against Humanity <a href="#ref-pulse">2018</a>)</span> which contains a representative sample of US citizens.The dataset contains an extract of 356 repsonses to 10 of the survey questions:</p>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Variable</strong></th>
+<th><strong>Question</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gender</td>
+<td>What gender do you identify with?</td>
+</tr>
+<tr class="even">
+<td>Age</td>
+<td>What is your age?</td>
+</tr>
+<tr class="odd">
+<td>AgeGrp</td>
+<td>Age range</td>
+</tr>
+<tr class="even">
+<td>Race</td>
+<td>What is your race?</td>
+</tr>
+<tr class="odd">
+<td>Income</td>
+<td>About how much money do you make per year? (USD)</td>
+</tr>
+<tr class="even">
+<td>Education</td>
+<td>What is your highest level of education?</td>
+</tr>
+<tr class="odd">
+<td>PoliticalParty</td>
+<td>In politics today do you consider yourself a Democrat a Republican or Independent?</td>
+</tr>
+<tr class="even">
+<td>PoliticalView</td>
+<td>Would you say you are liberal conservative or moderate?</td>
+</tr>
+<tr class="odd">
+<td>ApproveTrump</td>
+<td>Do you approve disapprove or neither approve nor disapprove of how Donald Trump is handling his job as president?</td>
+</tr>
+<tr class="even">
+<td>Attractiveness</td>
+<td>On a scale of 1-10 how physically attractive are you?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="main-components-of-ggplot2" class="section level2">
+<h2><span class="header-section-number">4.4</span> Main components of ggplot2</h2>
+<p>To build a plot in <code>ggplot2</code>, you have to specify features of the plot. The two essential ones are;</p>
+<ul>
+<li><p>Aesthetics - <code>aes()</code> - describes which variables in our dataset are going to be mapped to what components of our plot</p></li>
+<li><p>Geometries - <code>geom_****()</code> - describes how the variables will be plotted</p></li>
+</ul>
+<p>The other types of features are; Scales, Themes, Facets which will be introduced throughout this tutorial.</p>
+</div>
+<div id="first-ggplot2-graph" class="section level2">
+<h2><span class="header-section-number">4.5</span> First ggplot2 graph</h2>
+<p>Here is how you produce a scatter plot of perceived attractiveness against age</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse, <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>Before we break down this example, it is perhaps worth noting the notation used on the y axis. It is how computers show scientific notation where <code>2e+05</code> <span class="math inline">\(= 2 \times 10^5\)</span>.</p>
+<p>Now let’s look at the different parts of the commands.</p>
+<p>With <code>ggplot2</code>, you always begin a graph with the function <code>ggplot()</code>, which creates the base layer and sets the default for each plot but it is blank until we add some layers - “geoms” - to it.</p>
+<p>The <code>aes</code> argument defines which variables you want to use for which purpose. ‘<code>aes</code>’ is short for aesthetics. So <code>ggplot(data = Pulse, aes(x = Attractiveness, y = Income))</code> defines the data and the variables to be plotted on the x-axis and the y-axis.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income))</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>As you can see - not a very informative graph!</p>
+<p>You complete your graph by adding one or more layers to <code>ggplot()</code>. There are many different types of layers you can use to create your graph and they all start with <code>geom_????</code>. For example, the function <code>geom_line()</code> adds a layer of a line to your plot.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><strong>QUESTION: Modify the same command to instead plot a scatter plot of age on the x axis against income on the y axis</strong></p>
+</div>
+<div id="adding-colour" class="section level2">
+<h2><span class="header-section-number">4.6</span> Adding colour</h2>
+<p>We can modify the appearance of our points in one of 2 ways - either we can map a variable of our data to an aesthetic or we can permanently apply a style characteristic across all points. To make all the points purple we can add colour=“purple” into the geom_point() part of the syntax.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span><span class="st">&quot;purple&quot;</span>)</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>To set the points to be different colours based on the column ‘Gender’ then we can map gender to the colour aesthetic:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income, <span class="dt">colour=</span>Gender)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><strong>QUESTION: Before pressing run - predict what will happen in the following two chunks of code. After running - can you explain why?</strong></p>
+<p><strong>A</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income, <span class="dt">colour=</span><span class="st">&quot;purple&quot;</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
+<p><strong>B</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">colour=</span>Gender)</code></pre>
+</div>
+<div id="more-geoms" class="section level2">
+<h2><span class="header-section-number">4.7</span> More Geoms</h2>
+<p>Let’s go back to attractiveness. If instead we wanted a line plot we can simply replace <code>geom_point()</code> with <code>geom_line()</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>This graph is not particularly helpful in conveying any useful information about our data. Just because something is possible, does not mean it is advisable.</p>
+<p>A geom that may be more useful is <code>geom_jitter()</code> - which would help us here because the attractiveness variable has a restricted set of values, so many points are being overlayed</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>The <code>geom_****</code> functions all have various default options associated with them. For example, the size and colour of the points in <code>geom_point()</code> or the amount of jitter associated with them in <code>geom_jitter()</code>.</p>
+<p><strong>QUESTION: Using the help menu for geom_jitter can you modify the following code so that the amount of horizontal jitter is reduced and that there is no vertical jitter applied</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r">?geom_jitter</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>()</code></pre>
+</div>
+<div id="scales" class="section level2">
+<h2><span class="header-section-number">4.8</span> Scales</h2>
+<p>Income is a notoriously fickle variable. As we can see from the the table below there is a huge range in the values income takes, so when we have plotted Income against Attractiveness, most of our points are bunched up near the bottom.</p>
+<p>We can show this by categorising our points in a table such as below;</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Income</th>
+<th align="right">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">$1,000-$9,999</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">$10,000-$99,999</td>
+<td align="right">278</td>
+</tr>
+<tr class="odd">
+<td align="left">$100,000-$999,999</td>
+<td align="right">59</td>
+</tr>
+</tbody>
+</table>
+<p>One solution is to apply a log scale for income. A log scale is when each tick mark of the graph represents an increase in the power.</p>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the above example, the top line is increasing <em>by</em> 10 whereas hde bottom line is increasing <em>by powers of 10</em>. To apply this change of scale to our plot, we add the following code to our plot. <code>scale_y_log10()</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width=</span><span class="fl">0.25</span>,<span class="dt">height=</span><span class="dv">0</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_log10</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="layering" class="section level2">
+<h2><span class="header-section-number">4.9</span> Layering</h2>
+<p>ggplot2 graphs can have more than one layer. We may want to produce a line plot with the points shown on top. In ggplots we can simply add more layers to a graph by using <code>+</code>. Layers are added sequentially so the final layer in the code will be plotted over the existing layers. We might want to add a trend line onto our plot to show the increasing trend of income with attractiveness (or the increasing arrogance of wealth?)</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Attractiveness, <span class="dt">y =</span> Income)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width=</span><span class="fl">0.25</span>,<span class="dt">height=</span><span class="dv">0</span>)<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_log10</span>()<span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_smooth</span>()</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="more-geoms-1" class="section level2">
+<h2><span class="header-section-number">4.10</span> More geoms</h2>
+<p>Bar charts are a popular (and horrifically misused way of presenting results). Let’s look at a bar chart of number respondents by political affiliation. We have to think a little bit about how this will be presented - consider how a bar chart works. What goes on the x axis and what goes on the y axis?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> PoliticalParty))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>To bring in a second variable then you can map this to the colour or fill aesthetics.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> PoliticalParty,<span class="dt">fill=</span>Gender))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p>It’s hard to make the direct comparison across our three parties - so we can convert to proportions use position=“fill”</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> PoliticalParty,<span class="dt">fill=</span>Gender))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>,<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>)</code></pre>
+<p><img src="Online_R_Course_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><strong>QUESTION: Try removing <code>colour="black"</code> and describe the difference</strong></p>
+<p><strong>QUESTION: Make an (informative) bar chart of level of support for Donald Trump by Gender</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>())<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>()</code></pre>
+</div>
+<div id="comparing-attractiveness-across-gender" class="section level2">
+<h2><span class="header-section-number">4.11</span> Comparing attractiveness across gender</h2>
+<p>How can we compare attractiveness across gender in a better way than colouring the points? There are lots of other geoms which might help here. We could produce a boxplot to summarise the level of attractiveness by gender.</p>
+<p><strong>QUESTION: Find the geom function for a boxplot and complete the code below to produce a boxplot of attractiveness by gender</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> ?????, <span class="dt">y =</span> ?????))<span class="op">+</span>
+<span class="st">  </span>geom_?????()</code></pre>
+<p>The labelling on the y axis is kind of ugly here. Not many people work in base 2.5; but R makes some assumptions on how to label the plots so that it can fit in an ‘optimal’ number of labels. Let’s use scale_y_continuous() to modify this so that all points between 1 and 10 are labelled:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> ?????, <span class="dt">y =</span> ?????))<span class="op">+</span>
+<span class="st">  </span>geom_?????()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<p>Violin plots are also a really nice way of summarising data in a similar way to boxplots
+##Do we want to remove the answer to the earlier questions?</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> Attractiveness))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+<p><strong>QUESTION: Modify the following code so that the violins are shaded in different colours for men and women. (Hint: You might need to consult the help menu to look for a new aesthetic we haven’t mentioned yet</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> Attractiveness))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</code></pre>
+</div>
+<div id="splitting-plots-using-facets" class="section level2">
+<h2><span class="header-section-number">4.12</span> Splitting plots using Facets</h2>
+<p>We’ve seen how to add variables to a plot using aesthetics. Another way, particularly useful for categorical variables, is to split your plot into facets, which are subplots that each display one subset of the data.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> Attractiveness,<span class="dt">fill=</span>Gender))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span>PoliticalParty)</code></pre>
+<p>Be careful not to miss the ~ before country. This is used to define a formula which can have something on both sides of ~ in general. It’s used in many R function, and you’ll see this more later in modelling.</p>
+</div>
+<div id="themes-and-labels" class="section level2">
+<h2><span class="header-section-number">4.13</span> Themes and labels</h2>
+<p>Themes refers to the non data elements of your plot. ggplot2 has a huge number of theme options that allows you to control almost every aspect of your plot which becomes important when you want to present or publish your graphs.</p>
+<p>The labs() function allows us to label any of our variables and create a title. We only need to change options that we are unhappy with.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> Attractiveness,<span class="dt">fill=</span>Gender))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">+</span>
+<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>PoliticalParty)<span class="op">+</span>
+<span class="st">      </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Gender&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Perceived Physical Attractivess&quot;</span>,<span class="dt">colour=</span><span class="st">&quot;Gender (again)&quot;</span>,<span class="dt">title =</span> <span class="st">&quot;Violin Plots of Physical Attractiveness by Gender and Political   Affiliation&quot;</span>)</code></pre>
+<p>theme() allows us to modify the size, font, face of labels and the appearance of many other attributes of the plot which do not depend on the data.</p>
+<pre class="sourceCode r"><code class="sourceCode r">?theme</code></pre>
+<p>You will see a a huge number of arguments. You don’t need to learn them all, but you can find out about them on that page. Let’s say we want to edit the text on the x axis, which is the axis.text.x argument. We can modify different properties of the text through the element_text() function. Let’s look at that.</p>
+<pre class="sourceCode r"><code class="sourceCode r">?element_text</code></pre>
+<p>We can see it has arguments such as family (for font), colour, size and angle etc.</p>
+<p><strong>QUESTION: Investigate the element_text() function to make the text labels on the x axis large and bold</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> Attractiveness,<span class="dt">fill=</span>Gender))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_violin</span>()<span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">breaks=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">+</span>
+<span class="st">     </span><span class="kw">facet_wrap</span>(<span class="op">~</span>PoliticalParty)<span class="op">+</span>
+<span class="st">      </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;Gender&quot;</span>,<span class="dt">y =</span> <span class="st">&quot;Perceived Physical Attractivess&quot;</span>,<span class="dt">colour=</span><span class="st">&quot;Gender (again)&quot;</span>,<span class="dt">title =</span> <span class="st">&quot;Violin Plots of Physical Attractiveness by Gender and Political   Affiliation&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(????))</code></pre>
+</div>
+<div id="recap-exercises" class="section level2">
+<h2><span class="header-section-number">4.14</span> Recap Exercises</h2>
+<p><strong>Fix the error(s) in this code to produce a boxplot of attractiveness by age group</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(<span class="dt">x =</span> agegroup, <span class="dt">y =</span> attractiveness))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre>
+<p><strong>Fill in the blanks to produce a scatter plot of attractiveness (y axis) by age (x axis)</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(??????))<span class="op">+</span>
+<span class="st">  </span>geom_????()</code></pre>
+<p><strong>Continuing the previous example, modify the scale on the y axis to show every number between 1 and 10 and the x axis to show every 20 years</strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse,  <span class="kw">aes</span>(??????))<span class="op">+</span>
+<span class="st">  </span>geom_????()</code></pre>
+<p><strong>Produce boxplots of income by gender, with seperate panels for each age group. Use some colours, set a log axis for income, and add sensible titles and labels </strong></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Pulse, ...</code></pre>
+<p><strong>Produce a graph to investigate the is a relationship between income and education; and the extent to which this varies by gender.</strong></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-pulse">
+<p>Cards Against Humanity. 2018. “Pulse of the Nation.” <a href="https://thepulseofthenation.com/downloads/201806-CAH_PulseOfTheNation_Raw.csv">https://thepulseofthenation.com/downloads/201806-CAH_PulseOfTheNation_Raw.csv</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2019. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="base-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation-with-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Online_R_Course.pdf", "Online_R_Course.epub"],
+"toc": {
+"collapse": "subsection",
+"download": ["pdf", "epub"]
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
